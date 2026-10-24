@@ -404,7 +404,6 @@
             align-items: center;
             gap: 6px;
         }
-        .tg-verified-svg { width: 17px; height: 17px; display: inline-block; vertical-align: middle; flex-shrink: 0; }
         .user-text-info p { font-size: 0.70rem; color: #2AABEE; font-weight: 600; }
 
         .header-actions { display: flex; align-items: center; gap: 6px; }
@@ -689,7 +688,7 @@
     <!-- MAIN BODY PAGES -->
     <main class="p-3.5 space-y-4">
 
-        <!-- ======================= 1. HOME ARENA PAGE (WITH FILE 2 ARENA DESIGN) ======================= -->
+        <!-- ======================= 1. HOME ARENA PAGE ======================= -->
         <div id="home-page" class="sub-page active space-y-4">
             <!-- BANNER -->
             <div class="rounded-3xl overflow-hidden relative border border-white/10 shadow-2xl bg-gradient-to-r from-blue-900 to-indigo-950 p-4 flex items-center justify-between min-h-[140px]">
@@ -726,20 +725,27 @@
                 <div class="h-[1px] bg-slate-700/60 flex-1"></div>
             </div>
 
-            <!-- DYNAMIC ARENA CARDS CONTAINER (RENDERED FROM FIREBASE WITH FILE 2 DESIGN) -->
+            <!-- DYNAMIC ARENA CARDS CONTAINER -->
             <div id="game-categories-container" class="space-y-3"></div>
         </div>
 
-        <!-- ======================= 2. MATCHES LIST PAGE (WITH FILE 2 MATCH CARD DESIGN) ======================= -->
+        <!-- ======================= 2. MATCHES LIST PAGE (WITH REFRESH BUTTON) ======================= -->
         <div id="matches-page" class="sub-page space-y-3.5">
             <div class="bg-gradient-to-r from-blue-900 via-indigo-950 to-slate-900 p-4 rounded-3xl border border-white/10 shadow-lg text-center relative">
-                <button onclick="navigateTo('home-page')" class="w-8 h-8 rounded-2xl bg-slate-800/80 text-white flex items-center justify-center border border-white/10 absolute left-3 top-3.5 active:scale-95">
+                <!-- Back Button -->
+                <button onclick="navigateTo('home-page')" class="w-8 h-8 rounded-2xl bg-slate-800/80 text-white flex items-center justify-center border border-white/10 absolute left-3 top-3.5 active:scale-95 transition" title="ফিরে যান">
                     <i class="fas fa-arrow-left text-xs"></i>
                 </button>
+
                 <h2 class="text-lg font-black text-amber-400 tracking-wider inline-block" id="arena-header-title" style="font-family: 'Russo One', sans-serif;">
                     LUDO KING (লুডো কিং)
                 </h2>
                 <p class="text-[11px] text-slate-300 mt-0.5">লাইভ টুর্নামেন্ট ও ইনস্ট্যান্ট উইথড্র সিস্টেম</p>
+
+                <!-- Refresh Matches Button (Replacing Telegram Pop as requested) -->
+                <button onclick="refreshMatchesListUI(this)" class="w-8 h-8 rounded-2xl bg-blue-600/30 text-blue-400 border border-blue-400/30 flex items-center justify-center absolute right-3 top-3.5 active:scale-95 hover:bg-blue-600/50 transition shadow" title="ম্যাচ রিফ্রেশ করুন">
+                    <i class="fas fa-rotate text-xs"></i>
+                </button>
             </div>
 
             <!-- ACTION BAR: UPLOAD RESULT & MY JOINED LIST -->
@@ -828,7 +834,6 @@
 
             <!-- SUPPORT CARDS -->
             <div class="space-y-2.5">
-                <!-- 1. Live Support Desk -->
                 <div onclick="openSupportModal()" class="support-card-link border-l-4 border-l-cyan-400">
                     <div class="flex items-center gap-3.5">
                         <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl">
@@ -842,7 +847,6 @@
                     <i class="fas fa-chevron-right text-cyan-400 text-xs"></i>
                 </div>
 
-                <!-- 2. WhatsApp Support -->
                 <div onclick="openExternalUrl('https://wa.me/8801827750260')" class="support-card-link border-l-4 border-l-emerald-500">
                     <div class="flex items-center gap-3.5">
                         <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl">
@@ -856,7 +860,6 @@
                     <i class="fas fa-chevron-right text-emerald-400 text-xs"></i>
                 </div>
 
-                <!-- 3. Telegram Channel / Group -->
                 <div onclick="openExternalUrl('https://t.me/EXPERTearn_team')" class="support-card-link border-l-4 border-l-blue-500">
                     <div class="flex items-center gap-3.5">
                         <div class="w-12 h-12 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl">
@@ -973,7 +976,7 @@
             </div>
         </div>
 
-        <!-- ======================= 8. PROFILE PAGE (WITH REDEEM PROMO CODE) ======================= -->
+        <!-- ======================= 8. PROFILE PAGE (WITH CHAT ID AS REQUESTED) ======================= -->
         <div id="profile-page" class="sub-page space-y-4">
             <div class="flex items-center justify-between">
                 <button onclick="navigateTo('home-page')" class="w-9 h-9 rounded-full bg-slate-800 text-white flex items-center justify-center border border-white/10 active:scale-95">
@@ -990,10 +993,11 @@
 
                 <h3 id="profile-name-text" class="text-xl font-black text-white tracking-wide uppercase" style="font-family: 'Russo One', sans-serif;">PLAYER</h3>
 
-                <div class="inline-flex items-center gap-2 mt-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-black text-xs cursor-pointer shadow-sm" onclick="copyReferralLink()">
-                    <i class="fas fa-fingerprint"></i>
-                    <span id="profile-uid-display">UID: 00000</span>
-                    <i class="fas fa-copy text-xs ml-0.5"></i>
+                <!-- UID DISPLAY REPLACED BY CHAT ID AS REQUESTED -->
+                <div class="inline-flex items-center gap-2 mt-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-black text-xs cursor-pointer shadow-sm hover:bg-cyan-500/20 transition active:scale-95" onclick="copyChatId()" title="ক্লিক করে চ্যাট আইডি কপি করুন">
+                    <i class="fas fa-id-badge text-cyan-400"></i>
+                    <span id="profile-uid-display">Chat ID: 6954647230</span>
+                    <i class="fas fa-copy text-xs ml-0.5 text-cyan-300"></i>
                 </div>
             </div>
 
@@ -1295,7 +1299,7 @@
 
     <!-- ======================= MODALS / POPUPS ======================= -->
 
-    <!-- 1. FULL POPUP LIVE CHAT MODAL WITH IMGBB INTEGRATION & ADMIN MODERATION -->
+    <!-- 1. FULL POPUP LIVE CHAT MODAL WITH PROVIDED VERIFIED BADGE & PAPER PLANE SEND ICON -->
     <div id="support-modal-overlay">
         <div id="support-chat-wrapper">
             <div class="tg-top-bar">
@@ -1315,10 +1319,10 @@
                     <div class="user-text-info">
                         <h4 id="support-header-title">
                             <span>LUDO HUB Support</span>
-                            <svg class="tg-verified-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10.29 2.3c.75-.4 1.67-.4 2.42 0l1.58.84c.32.17.68.26 1.04.26h1.79c.85 0 1.63.45 2.05 1.18l.89 1.55c.18.31.44.57.75.75l1.55.89c.73.42 1.18 1.2 1.18 2.05v1.79c0 .36.09.72.26 1.04l.84 1.58c.4.75.4 1.67 0 2.42l-.84 1.58c-.17.32-.26.68-.26 1.04v1.79c0 .85-.45 1.63-1.18 2.05l-1.55.89c-.31.18-.57.44-.75.75l-.89 1.55c-.42.73-1.2 1.18-2.05 1.18h-1.79c-.36 0-.72.09-1.04.26l-1.58.84c-.75.4-1.67.4-2.42 0l-1.58-.84a2.44 2.44 0 0 0-1.04-.26h-1.79c-.85 0-1.63-.45-2.05-1.18l-.89-1.55a2.44 2.44 0 0 0-.75-.75l-1.55-.89c-.73-.42-1.18-1.2-1.18-2.05v-1.79c0-.36-.09-.72-.26-1.04l-.84-1.58a2.44 2.44 0 0 1 0-2.42l.84-1.58c.17-.32.26-.68.26-1.04V6.18c0-.85.45-1.63 1.18-2.05l1.55-.89c.31-.18.57-.44.75-.75l.89-1.55c.42-.73 1.2-1.18 2.05-1.18h1.79c.36 0 .72-.09 1.04-.26l1.58-.84z" fill="#2AABEE"/>
-                                <path d="M9.3 12.2l1.9 1.9 4.3-4.3" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                            <!-- VERIFIED BADGE APPLIED FROM PROVIDED FILE -->
+                            <span class="inline-flex items-center justify-center text-sky-400 text-xs ml-0.5" title="Verified Support">
+                                <i class="fas fa-check-circle drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]"></i>
+                            </span>
                         </h4>
                         <p id="support-header-sub">অনলাইন সাপোর্ট টিম</p>
                     </div>
@@ -1356,7 +1360,7 @@
 
             <div id="user-status-banner">আপনার অ্যাকাউন্টটি সাময়িকভাবে বার্তা প্রেরণের জন্য নিষিদ্ধ করা হয়েছে।</div>
 
-            <!-- Chat input bar with ImgBB camera upload -->
+            <!-- Chat input bar with ImgBB camera upload & Send Icon from provided template -->
             <div class="tg-bottom-bar" id="support-input-bar">
                 <input type="file" id="chat-image-input" accept="image/*" class="hidden" onchange="uploadAndSendChatImage(event)">
                 <button onclick="document.getElementById('chat-image-input').click()" class="text-slate-400 hover:text-white p-2" title="ছবি পাঠান">
@@ -1483,7 +1487,7 @@
         </div>
     </div>
 
-    <!-- 4. UPLOAD RESULT MODAL WITH IMGBB HOSTING (FIXED: ADMIN REVIEW INSTEAD OF SELF-SETTLEMENT) -->
+    <!-- 4. UPLOAD RESULT MODAL WITH IMGBB HOSTING -->
     <div id="upload-result-modal" class="hidden fixed inset-0 bg-black/85 z-[125] backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-[#10192e] rounded-3xl p-5 w-full max-w-sm border border-white/10 space-y-4">
             <div class="flex items-center justify-between pb-2 border-b border-white/10">
@@ -1627,12 +1631,6 @@
         const OFFICIAL_TITLE = "LUDO HUB Support";
         const IMGBB_API_KEY = "c6d16ab261fe68bcfc42d6f9ef10b7da";
 
-        const VERIFIED_BADGE_SVG = `
-            <svg class="tg-verified-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.29 2.3c.75-.4 1.67-.4 2.42 0l1.58.84c.32.17.68.26 1.04.26h1.79c.85 0 1.63.45 2.05 1.18l.89 1.55c.18.31.44.57.75.75l1.55.89c.73.42 1.18 1.2 1.18 2.05v1.79c0 .36.09.72.26 1.04l.84 1.58c.4.75.4 1.67 0 2.42l-.84 1.58c-.17.32-.26.68-.26 1.04v1.79c0 .85-.45 1.63-1.18 2.05l-1.55.89c-.31.18-.57.44-.75.75l-.89 1.55c-.42.73-1.2 1.18-2.05 1.18h-1.79c-.36 0-.72.09-1.04.26l-1.58.84c-.75.4-1.67.4-2.42 0l-1.58-.84a2.44 2.44 0 0 0-1.04-.26h-1.79c-.85 0-1.63-.45-2.05-1.18l-.89-1.55a2.44 2.44 0 0 0-.75-.75l-1.55-.89c-.73-.42-1.18-1.2-1.18-2.05v-1.79c0-.36-.09-.72-.26-1.04l-.84-1.58a2.44 2.44 0 0 1 0-2.42l.84-1.58c.17-.32.26-.68.26-1.04V6.18c0-.85.45-1.63 1.18-2.05l1.55-.89c.31-.18.57-.44.75-.75l.89-1.55c.42-.73 1.2-1.18 2.05-1.18h1.79c.36 0 .72-.09 1.04-.26l1.58-.84z" fill="#2AABEE"/>
-                <path d="M9.3 12.2l1.9 1.9 4.3-4.3" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>`;
-
         // Support Realtime DB
         const supportFirebaseConfig = {
             apiKey: "AIzaSyAsENiikJ5YQ1F8UHrixdJVEINAhO4PG30",
@@ -1661,6 +1659,7 @@
 
         let activeUser = {
             id: "6954647230",
+            chatId: "6954647230",
             name: "PLAYER",
             photo: "https://i.postimg.cc/L4YZZKsv/IMG-20260919-214336-790.jpg",
             depositBalance: 60.00,  // মেইন গেমিং ডিপোজিট ব্যালেন্স (উত্তোলনযোগ্য নয়)
@@ -1719,6 +1718,7 @@
                 const tgUser = window.Telegram.WebApp.initDataUnsafe?.user;
                 if (tgUser) {
                     activeUser.id = String(tgUser.id);
+                    activeUser.chatId = String(tgUser.id);
                     activeUser.name = `${tgUser.first_name || ''} ${tgUser.last_name || ''}`.trim() || "PLAYER";
                     if (tgUser.photo_url) activeUser.photo = tgUser.photo_url;
                 }
@@ -1739,6 +1739,7 @@
                 name: activeUser.name,
                 photo: activeUser.photo,
                 uid: activeUser.id,
+                chatId: activeUser.chatId || activeUser.id,
                 lastSeen: Date.now()
             });
 
@@ -1836,7 +1837,7 @@
             listenRealtimeMatches();
             listenDynamicTasks();
             listenPureHistory();
-            listenPendingMatchReviews(); // Realtime listener for submitted match results
+            listenPendingMatchReviews();
             loadLeaderboard();
             checkReturnPaymentStatus();
 
@@ -1877,13 +1878,24 @@
             if (depPageBal) depPageBal.textContent = `৳${total}`;
 
             document.getElementById('profile-name-text').textContent = activeUser.name.toUpperCase();
-            document.getElementById('profile-uid-display').textContent = `UID: ${activeUser.id.slice(-5)}`;
+            
+            // SHOW TELEGRAM CHAT ID INSTEAD OF UID AS REQUESTED
+            const displayChatId = activeUser.chatId || activeUser.id;
+            document.getElementById('profile-uid-display').textContent = `Chat ID: ${displayChatId}`;
+
             document.getElementById('user-profile-img').src = activeUser.photo;
             document.getElementById('header-avatar').src = activeUser.photo;
 
             updateReferralDisplay();
             renderDailyCheckinState();
             if (window.lucide) lucide.createIcons();
+        }
+
+        function copyChatId() {
+            const cId = activeUser.chatId || activeUser.id;
+            navigator.clipboard.writeText(cId).then(() => {
+                showToast(`Chat ID [${cId}] কপি করা হয়েছে!`, "success");
+            });
         }
 
         function syncBalancesToFirebase() {
@@ -1916,6 +1928,37 @@
 
         function showComingSoonAlert(title) {
             showToast(`🔥 ${title} - Coming soon! খুব শীঘ্রই এটি চালু হবে।`, 'info');
+        }
+
+        // --- REFRESH MATCHES HANDLER WITH ANIMATION ---
+        function refreshMatchesListUI(btnEl) {
+            if (btnEl) {
+                const icon = btnEl.querySelector('i');
+                if (icon) icon.classList.add('fa-spin');
+            }
+            database.ref('matches').once('value').then(snap => {
+                realtimeMatches = [];
+                if (snap.exists()) {
+                    snap.forEach(c => {
+                        const m = c.val();
+                        m.id = c.key;
+                        m.gameType = m.gameType || 'ludo';
+                        m.mode = m.mode || (m.max === 4 ? '1v3' : m.max === 3 ? '1v2' : '1v1');
+                        m.max = m.max || (m.mode === '1v3' ? 4 : m.mode === '1v2' ? 3 : 2);
+                        m.playersList = m.players ? Object.values(m.players) : [];
+                        m.current = m.playersList.length;
+                        m.myJoined = m.players && m.players[activeUser.id] !== undefined;
+                        realtimeMatches.push(m);
+                    });
+                }
+                renderMatches();
+                showToast("ম্যাচ তালিকা রিফ্রেশ সম্পন্ন হয়েছে!", "success");
+            }).finally(() => {
+                if (btnEl) {
+                    const icon = btnEl.querySelector('i');
+                    if (icon) icon.classList.remove('fa-spin');
+                }
+            });
         }
 
         // --- 2. NOTIFICATIONS BADGE LOGIC ---
@@ -1982,7 +2025,7 @@
             `).join('');
         }
 
-        // --- 3. DYNAMIC TASKS FROM FIREBASE (/tasks) ---
+        // --- 3. DYNAMIC TASKS FROM FIREBASE ---
         let remoteTasks = [];
         function listenDynamicTasks() {
             database.ref('tasks').on('value', snap => {
@@ -2280,7 +2323,7 @@
             return data.data.url;
         }
 
-        // --- 5. RESULT SCREENSHOT SUBMIT (FIXED: SELF-SETTLEMENT PREVENTED & ADMIN REVIEW QUEUE) ---
+        // --- 5. RESULT SCREENSHOT SUBMIT ---
         function openUploadResultModal() {
             document.getElementById('input-result-room').value = '';
             document.getElementById('result-img-preview-box').classList.add('hidden');
@@ -2334,14 +2377,13 @@
 
                 if (!foundMatch) throw new Error("ভুল রুম কোড! ম্যাচ পাওয়া যায়নি।");
 
-                // Check if already completed or under review
                 if (foundMatch.status === "COMPLETED") {
                     throw new Error("এই ম্যাচটি ইতিমধ্যে সম্পন্ন হয়ে গেছে!");
                 }
 
                 const submissionId = 'sub_' + Date.now();
 
-                // 1. Send submission to Admin Review Queue (NOT instant credit)
+                // Admin Review Queue
                 await database.ref(`match_submissions/${foundMatch.id}/${submissionId}`).set({
                     matchId: foundMatch.id,
                     matchNo: foundMatch.matchNo,
@@ -2355,14 +2397,12 @@
                     submittedAt: Date.now()
                 });
 
-                // 2. Update match status to Under Review so others cannot tamper
                 await database.ref(`matches/${foundMatch.id}`).update({
                     status: "UNDER_REVIEW",
                     lastSubmittedBy: activeUser.id,
                     lastSubmittedAt: Date.now()
                 });
 
-                // 3. Mark user history status as PENDING_REVIEW (Waiting for admin approval)
                 await database.ref(`users/${activeUser.id}/history/${foundMatch.id}`).update({
                     status: "PENDING_REVIEW",
                     screenshot: uploadedResultImageUrl,
@@ -2370,7 +2410,6 @@
                     submittedAt: Date.now()
                 });
 
-                // 4. Send informative notification
                 await database.ref(`users/${activeUser.id}/notifications`).push({
                     title: "ফলাফল যাচাইয়ে অপেক্ষারত",
                     message: `ম্যাচ ${foundMatch.matchNo} (রুম: ${room})-এর স্ক্রিনশট সফলভাবে জমা হয়েছে। অ্যাডমিন ভেরিফাই করার পর আপনার ব্যালেন্সে ৳${foundMatch.prize} যোগ হবে।`,
@@ -2389,7 +2428,6 @@
             }
         }
 
-        // Listener to handle approved match reviews automatically
         function listenPendingMatchReviews() {
             database.ref(`users/${activeUser.id}/history`).on('child_changed', snap => {
                 const item = snap.val();
@@ -2399,7 +2437,7 @@
             });
         }
 
-        // --- 6. LIVE CHAT SUPPORT & CHAT IMAGE SEND WITH ADMIN DESK ---
+        // --- 6. LIVE CHAT SUPPORT ---
         function openSupportModal() {
             isSupportModalCurrentlyOpen = true;
             document.getElementById('support-modal-overlay').style.display = 'flex';
@@ -2511,7 +2549,10 @@
             document.getElementById('btn-back').style.display = 'none';
             document.getElementById('btn-complete-ticket').style.display = 'none';
             document.getElementById('btn-manage-links').style.display = 'inline-flex';
-            document.getElementById('support-header-title').innerHTML = `<span>Admin Inbox</span>`;
+            document.getElementById('support-header-title').innerHTML = `
+                <span>Admin Inbox</span>
+                <span class="inline-flex items-center justify-center text-sky-400 text-xs ml-0.5"><i class="fas fa-check-circle drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]"></i></span>
+            `;
             document.getElementById('support-header-sub').innerText = "সকল ব্যবহারকারীর ইনবক্স";
             document.getElementById('support-header-img').src = OFFICIAL_LOGO;
 
@@ -2598,7 +2639,10 @@
             document.getElementById('btn-back').style.display = 'inline-flex';
             document.getElementById('btn-complete-ticket').style.display = 'inline-flex';
             document.getElementById('btn-manage-links').style.display = 'none';
-            document.getElementById('support-header-title').innerHTML = `<span>${escapeHTML(userName)}</span> <i class="fas fa-info-circle" style="font-size:0.8rem; color:#8e9bb2;"></i>`;
+            document.getElementById('support-header-title').innerHTML = `
+                <span>${escapeHTML(userName)}</span> 
+                <span class="inline-flex items-center justify-center text-sky-400 text-xs ml-0.5"><i class="fas fa-check-circle drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]"></i></span>
+            `;
             document.getElementById('support-header-sub').innerText = `ID: ${targetUid} (ক্লিক করে প্রোফাইল দেখুন)`;
             document.getElementById('support-header-img').src = userPhoto;
 
@@ -2623,7 +2667,9 @@
             
             document.getElementById('support-header-title').innerHTML = `
                 <span>${OFFICIAL_TITLE}</span>
-                ${VERIFIED_BADGE_SVG}
+                <span class="inline-flex items-center justify-center text-sky-400 text-xs ml-0.5" title="Verified Support">
+                    <i class="fas fa-check-circle drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]"></i>
+                </span>
             `;
             document.getElementById('support-header-sub').innerText = "অনলাইন সাপোর্ট টিম";
             document.getElementById('support-header-img').src = OFFICIAL_LOGO;
@@ -2743,7 +2789,7 @@
                                 <div class="community-hub-card">
                                     <div class="community-hub-title">
                                         <span>${OFFICIAL_TITLE}</span>
-                                        ${VERIFIED_BADGE_SVG}
+                                        <span class="inline-flex items-center justify-center text-sky-400 text-xs ml-0.5"><i class="fas fa-check-circle drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]"></i></span>
                                     </div>
 
                                     <div style="display:flex; align-items:center; gap:4px; margin-bottom:8px;">
@@ -3035,7 +3081,7 @@
             }
         }
 
-        // --- 7. MATCHES, CATEGORIES & ARENA DESIGN (FROM FILE 2) ---
+        // --- 7. MATCHES, CATEGORIES & ARENA DESIGN ---
         function listenRealtimeMatches() {
             database.ref('game_categories').on('value', snap => {
                 if (snap.exists()) {
@@ -3096,7 +3142,6 @@
             defaults.forEach(item => database.ref('matches').push(item));
         }
 
-        // LIVE ARENA TOURNAMENTS DESIGN (FROM FILE 2)
         function renderGameCategories() {
             const container = document.getElementById('game-categories-container');
             if (!container) return;
@@ -3104,7 +3149,7 @@
             let html = '';
 
             gameCategories.forEach(g => {
-                if (g.hidden === true) return; // Admin can hide
+                if (g.hidden === true) return;
 
                 let borderColor = 'border-blue-500/30';
                 let tagBg = 'bg-rose-500 text-white';
@@ -3133,7 +3178,6 @@
                 </div>`;
             });
 
-            // LIVE AUTO LUDO (FROM FILE 2)
             html += `
             <div onclick="showComingSoonAlert('লাইভ অটো লুডু')" class="bg-[#121a2d] rounded-3xl p-4 border border-cyan-500/20 cursor-pointer hover:border-cyan-500/50 transition relative overflow-hidden shadow-lg">
                 <div class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-cyan-500 text-slate-950 text-[10px] font-black uppercase tracking-wider flex items-center gap-1 shadow">
@@ -3182,7 +3226,7 @@
             renderMatches();
         }
 
-// MATCH CARD DESIGN (INTEGRATING FILE 2 DESIGN WITH BALANCES & PROGRESS)
+        // ================= MATCH CARD DESIGN (UPDATED AS REQUESTED) =================
         function renderMatches() {
             const container = document.getElementById('tournament-matches-container');
             if (!container) return;
@@ -3230,7 +3274,23 @@
                 const maxPlayers = m.max || 2;
                 const isFull = m.current >= maxPlayers;
                 const hasRoomCode = m.roomCode && m.roomCode.trim() !== "";
-                const modeLabel = m.mode ? m.mode.toUpperCase() : (maxPlayers === 4 ? '1V3' : maxPlayers === 3 ? '1V2' : '1V1');
+                const neededPlayers = Math.max(0, maxPlayers - m.current);
+
+                // AS REQUESTED:
+                // 1v1 মোড বাদ দিয়ে কতজন প্রয়োজন তা দেখানো হবে (যেমন: ১ জন প্রয়োজন)।
+                // 1v2 বা 1v3 এর জায়গায় 'FREE' দেখানো হবে।
+                let centerBadgeHtml = '';
+                if (m.mode === '1v2' || m.mode === '1v3') {
+                    centerBadgeHtml = `<span class="px-3 py-1 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-black text-xs shadow tracking-wider uppercase">FREE</span>`;
+                } else {
+                    if (isFull) {
+                        centerBadgeHtml = `<span class="px-2.5 py-1 rounded-lg bg-rose-600 text-white font-black text-xs shadow tracking-wider uppercase">ম্যাচ ফুল</span>`;
+                    } else if (neededPlayers === 1) {
+                        centerBadgeHtml = `<span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-black text-xs shadow tracking-wider">১ জন প্রয়োজন</span>`;
+                    } else {
+                        centerBadgeHtml = `<span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black text-xs shadow tracking-wider">${neededPlayers} জন প্রয়োজন</span>`;
+                    }
+                }
 
                 return `
                 <div class="match-card p-4 space-y-3.5 border border-slate-200">
@@ -3263,7 +3323,7 @@
                             <span class="text-base font-black text-emerald-600 font-mono">৳${m.prize}</span>
                         </div>
                         <div class="flex items-center justify-center">
-                            <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-rose-500 to-amber-500 text-white font-black text-xs shadow tracking-wider">${modeLabel}</span>
+                            ${centerBadgeHtml}
                         </div>
                         <div>
                             <span class="text-[10px] font-bold text-slate-400 block uppercase">Entry Fee</span>
@@ -3405,7 +3465,6 @@
 
             await database.ref(`matches/${m.id}/players/${activeUser.id}`).set(playerPayload);
 
-            // Read snapshot to store in match history
             const pSnap = await database.ref(`matches/${m.id}/players`).once('value');
             const currentPlayers = pSnap.val() ? Object.values(pSnap.val()) : [playerPayload];
 
@@ -3436,7 +3495,7 @@
             pendingJoinMatchId = null;
         }
 
-        // ================= REFUND (RETURNS 100% TO MAIN DEPOSIT BALANCE) =================
+        // ================= REFUND =================
         function handleManualRefund(id) {
             const m = realtimeMatches.find(x => x.id === id);
             if (!m || !m.myJoined) return;
@@ -3448,7 +3507,6 @@
             if (confirm(`আপনি কি ম্যাচটি থেকে বের হয়ে ৳${m.fee} গেমিং ডিপোজিট রিফান্ড নিতে চান?`)) {
                 database.ref(`matches/${m.id}/players/${activeUser.id}`).remove();
 
-                // রিফান্ড হলে সব টাকা সরাসরি MAIN Deposit (গেমিং ব্যালেন্সে) যোগ হবে
                 activeUser.depositBalance += parseFloat(m.fee);
                 syncBalancesToFirebase();
 
@@ -3617,8 +3675,7 @@
                             </div>
                         </div>
                     `}
-
-                    <div class="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-white/5">
+<div class="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-white/5">
                         <span>এন্ট্রি ফি: <b class="text-white">৳${item.fee}</b> • প্রাইজ: <b class="text-emerald-400">৳${item.prize}</b></span>
                         <span>${item.time}</span>
                     </div>
