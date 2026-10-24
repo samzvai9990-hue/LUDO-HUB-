@@ -400,20 +400,23 @@
             color: #ffffff !important;
         }
 
+        /* History Category Tabs */
         .history-tab-btn {
-            padding: 8px 12px;
+            padding: 9px 12px;
             font-size: 0.75rem;
             font-weight: 800;
-            border-radius: 12px;
+            border-radius: 14px;
             background: #11192d;
             color: #94a3b8;
             border: 1px solid rgba(255,255,255,0.08);
             transition: all 0.2s;
+            text-align: center;
         }
         .history-tab-btn.active {
-            background: #2563eb;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
             color: #ffffff;
-            border-color: #3b82f6;
+            border-color: #60a5fa;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
         }
     </style>
 </head>
@@ -454,6 +457,7 @@
                 <i class="fas fa-headset text-sm"></i>
             </button>
 
+            <!-- Notification Button with dynamic badge -->
             <button onclick="toggleNotificationModal()" class="w-9 h-9 rounded-2xl bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center justify-center relative">
                 <i class="fas fa-bell text-sm"></i>
                 <span id="notif-badge" class="notif-badge-pill hidden">0</span>
@@ -478,7 +482,7 @@
                     </div>
                     <h2 class="text-lg font-black leading-tight text-white tracking-wide">JOIN OUR <span class="text-sky-400">TELEGRAM</span> COMMUNITY</h2>
                     <p class="text-[11px] text-slate-300 font-semibold">ম্যাচ রুম কোড ও দ্রুত আপডেট পেতে অফিসিয়াল গ্রুপে জয়েন করুন।</p>
-                    <a href="https://t.me/EXPERTearn_team" target="_blank" class="inline-block mt-1 px-4 py-1.5 bg-[#2AABEE] hover:bg-[#229ed9] text-white rounded-xl text-xs font-black shadow-lg">
+                    <a href="https://t.me/ZOROTOUR" target="_blank" class="inline-block mt-1 px-4 py-1.5 bg-[#2AABEE] hover:bg-[#229ed9] text-white rounded-xl text-xs font-black shadow-lg">
                         জয়েন করুন <i class="fas fa-arrow-right ml-1 text-[10px]"></i>
                     </a>
                 </div>
@@ -502,7 +506,7 @@
                 <div class="h-[1px] bg-slate-700/60 flex-1"></div>
             </div>
 
-            <!-- LIVE ARENA DIRECT LIST (NO WAIT FOR FIREBASE CATEGORIES) -->
+            <!-- DIRECT TOURNAMENT CATEGORIES -->
             <div id="game-categories-container" class="space-y-3">
                 <div onclick="openGameArena('Ludo King (লুডো কিং)', 'ludo')" class="bg-[#121a2d] rounded-3xl p-4 border border-blue-500/30 cursor-pointer hover:scale-[1.01] transition relative overflow-hidden shadow-lg">
                     <div class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-rose-500 text-white text-[10px] font-black uppercase tracking-wider shadow">HOT</div>
@@ -588,7 +592,6 @@
                 </button>
             </div>
 
-            <!-- FILTERS -->
             <div class="filter-container-box">
                 <div class="filter-tab-pill active" onclick="filterMatches('all', this)">
                     <div class="tab-title"><i class="fas fa-layer-group text-[10px]"></i> সব ম্যাচ</div>
@@ -634,7 +637,6 @@
                 </button>
             </div>
 
-            <!-- Firebase Tasks Container -->
             <div class="space-y-3.5" id="dynamic-tasks-container">
                 <div class="text-center py-8 text-xs text-slate-400">টাস্ক লোড হচ্ছে...</div>
             </div>
@@ -684,7 +686,7 @@
                     <i class="fas fa-chevron-right text-emerald-400 text-xs"></i>
                 </div>
 
-                <div onclick="openExternalUrl('https://t.me/EXPERTearn_team')" class="support-card-link border-l-4 border-l-blue-500">
+                <div onclick="openExternalUrl('https://t.me/ZOROTOUR')" class="support-card-link border-l-4 border-l-blue-500">
                     <div class="flex items-center gap-3.5">
                         <div class="w-12 h-12 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl">
                             <i class="fab fa-telegram"></i>
@@ -699,7 +701,7 @@
             </div>
         </div>
 
-        <!-- ======================= 5. COMBINED HISTORY WITH TABS ======================= -->
+        <!-- ======================= 5. COMBINED HISTORY WITH OPPONENT VS LAYOUT ======================= -->
         <div id="history-page" class="sub-page space-y-4">
             <div class="flex items-center justify-between pb-1">
                 <div class="flex items-center gap-2">
@@ -710,13 +712,14 @@
                 </div>
             </div>
 
-            <!-- TABS FOR HISTORY -->
+            <!-- TABS FOR HISTORY (MATCH, DEPOSIT, WITHDRAW) -->
             <div class="grid grid-cols-3 gap-2">
                 <button onclick="switchHistoryTab('matches', this)" class="history-tab-btn active">ম্যাচ হিস্ট্রি</button>
                 <button onclick="switchHistoryTab('deposits', this)" class="history-tab-btn">ডিপোজিট</button>
                 <button onclick="switchHistoryTab('withdrawals', this)" class="history-tab-btn">উইথড্র</button>
             </div>
 
+            <!-- DYNAMIC HISTORY VIEW -->
             <div id="history-content-container" class="space-y-3 min-h-[300px]"></div>
         </div>
 
@@ -795,7 +798,7 @@
                 </div>
             </div>
 
-            <!-- PLATINUM VIRTUAL WALLET CARD -->
+            <!-- PLATINUM WALLET CARD -->
             <div class="platinum-card p-5 space-y-4">
                 <div class="flex items-center justify-between">
                     <span class="text-xs font-black tracking-widest text-cyan-300 uppercase">ZORO TURN PLATINUM</span>
@@ -1013,7 +1016,7 @@
         </div>
     </div>
 
-    <!-- NOTIFICATION MODAL -->
+    <!-- NOTIFICATION MODAL (FILTERED ONLY MATCH CODE, DEPOSIT, WITHDRAW, ADMIN) -->
     <div id="notification-modal" class="hidden fixed inset-0 bg-[#070c18] z-[125] flex flex-col p-4">
         <div class="flex items-center justify-between bg-[#10192e] p-4 rounded-2xl border border-white/10 mb-4">
             <h3 class="font-bold text-white text-sm">নোটিফিকেশন সেন্টার</h3>
@@ -1034,7 +1037,7 @@
         </div>
     </div>
 
-    <!-- UPLOAD RESULT MODAL -->
+    <!-- UPLOAD RESULT MODAL WITH AUTO ROOM CODE -->
     <div id="upload-result-modal" class="hidden fixed inset-0 bg-black/85 z-[125] backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-[#10192e] rounded-3xl p-5 w-full max-w-sm border border-white/10 space-y-4">
             <div class="flex items-center justify-between pb-2 border-b border-white/10">
@@ -1044,7 +1047,8 @@
 
             <div class="space-y-1">
                 <label class="text-[11px] font-bold text-slate-300">ম্যাচ রুম কোড:</label>
-                <input id="input-result-room" type="text" placeholder="সঠিক রুম কোড লিখুন" class="w-full p-3 rounded-xl bg-[#080d1a] border border-white/10 text-white text-xs outline-none">
+                <!-- Dynamic Auto Loaded Active Room Code -->
+                <input id="input-result-room" type="text" placeholder="সক্রিয় ম্যাচের কোড স্বয়ংক্রিয়ভাবে বসবে..." class="w-full p-3 rounded-xl bg-[#080d1a] border border-white/10 text-white text-xs outline-none">
             </div>
 
             <input type="file" id="result-screenshot-file" accept="image/*" class="hidden" onchange="handleResultImageSelect(event)">
@@ -1155,7 +1159,6 @@
         const gameSupportApp = firebase.initializeApp(gameSupportFirebaseConfig, "gameSupportAppInstance");
         const gameSupportDb = gameSupportApp.database();
 
-        // ZERO INITIAL BONUS TO PREVENT FAKE FREE MONEY
         let activeUser = {
             id: "6954647230",
             chatId: "6954647230",
@@ -1181,7 +1184,6 @@
 
         let uploadedResultImageUrl = "";
         let selectedBindMethod = 'Nagad';
-        let selectedWithdrawCardId = null;
 
         window.onload = function() {
             if (window.Telegram?.WebApp) {
@@ -1196,7 +1198,6 @@
                 }
             }
 
-            // Sync user profile
             database.ref(`users/${activeUser.id}/profile`).update({
                 name: activeUser.name,
                 photo: activeUser.photo,
@@ -1205,7 +1206,6 @@
                 lastSeen: Date.now()
             });
 
-            // Listen balance changes
             database.ref(`users/${activeUser.id}/depositBalance`).on('value', snap => {
                 activeUser.depositBalance = parseFloat(snap.val()) || 0.00;
                 updateUserInterface();
@@ -1241,8 +1241,10 @@
 
             setTimeout(() => {
                 const loader = document.getElementById('preloader');
-                loader.style.opacity = '0';
-                loader.style.visibility = 'hidden';
+                if (loader) {
+                    loader.style.opacity = '0';
+                    loader.style.visibility = 'hidden';
+                }
             }, 500);
         };
 
@@ -1260,7 +1262,7 @@
             document.getElementById('profile-uid-display').textContent = `Chat ID: ${activeUser.chatId}`;
             document.getElementById('user-profile-img').src = activeUser.photo;
             document.getElementById('header-avatar').src = activeUser.photo;
-            document.getElementById('ref-link-display-full').textContent = `https://t.me/EXPERTearn_team?start=ref_${activeUser.id}`;
+            document.getElementById('ref-link-display-full').textContent = `https://t.me/ZOROTOUR?start=ref_${activeUser.id}`;
         }
 
         function copyChatId() {
@@ -1282,7 +1284,7 @@
             setTimeout(() => toast.remove(), 3000);
         }
 
-        // ================= FIREBASE DRIVEN TASKS WITH UNIQUE SECRET KEYS =================
+        // ================= FIREBASE TASKS (SECRET CODE REQUIRED) =================
         function listenFirebaseTasks() {
             gameSupportDb.ref('tasks').on('value', snap => {
                 remoteTasksList = [];
@@ -1338,7 +1340,6 @@
             }).join('');
         }
 
-        // SECRET KEY REQUIRED TO CLAIM TASK (CONTROLLED IN FIREBASE)
         async function verifyAndClaimTask(taskId, reward) {
             const input = document.getElementById(`secret-key-task-${taskId}`);
             const secretKey = input ? input.value.trim().toUpperCase() : "";
@@ -1346,7 +1347,6 @@
             if (!secretKey) return showToast("সিক্রেট কোড ছাড়া রিওয়ার্ড পাওয়া যাবে না!", "error");
 
             try {
-                // Must exist under task_secret_keys in gameSupportDb
                 const keyRef = gameSupportDb.ref(`task_secret_keys/${secretKey}`);
                 const snap = await keyRef.once('value');
 
@@ -1359,14 +1359,12 @@
                     throw new Error("এই কোডটি ইতিমধ্যে ব্যবহার করা হয়েছে!");
                 }
 
-                // Invalidate single use secret key
                 await keyRef.update({
                     isUsed: true,
                     usedBy: activeUser.id,
                     usedAt: Date.now()
                 });
 
-                // Add to deposit balance via transaction
                 await database.ref(`users/${activeUser.id}/depositBalance`).transaction(b => (b || 0) + parseFloat(reward));
 
                 if (!activeUser.completedTasks) activeUser.completedTasks = [];
@@ -1379,7 +1377,7 @@
             }
         }
 
-        // ================= MATCHES LOGIC & ATOMIC SEAT JOINING =================
+        // ================= MATCHES LOGIC =================
         function listenRealtimeMatches() {
             gameSupportDb.ref('matches').on('value', snap => {
                 realtimeMatches = [];
@@ -1471,7 +1469,6 @@
             const m = realtimeMatches.find(x => x.id === id);
             if (!m) return;
 
-            // Block immediately if completed or full
             if (m.status === 'COMPLETED' || m.current >= (m.max || 2)) {
                 return showToast("ম্যাচটি ইতিমধ্যে ফুল বা শেষ হয়ে গেছে!", "error");
             }
@@ -1488,7 +1485,6 @@
             document.getElementById('join-match-modal').classList.remove('hidden');
         }
 
-        // ATOMIC SEAT RESERVATION (PREVENTS POPUPS & OVER-JOINING AFTER FULL)
         async function confirmJoinMatch() {
             if (!pendingMatchToJoin) return;
             const matchRef = gameSupportDb.ref(`matches/${pendingMatchToJoin.id}`);
@@ -1497,7 +1493,6 @@
             let deductDeposit = Math.min(activeUser.depositBalance, fee);
             let deductWinning = fee - deductDeposit;
 
-            // Run atomic transaction to safely reserve seat
             matchRef.transaction(currentData => {
                 if (!currentData) return currentData;
                 const players = currentData.players || {};
@@ -1505,36 +1500,39 @@
                 const max = currentData.max || 2;
 
                 if (currentData.status === 'COMPLETED' || currentCount >= max) {
-                    return; // Abort
+                    return; 
                 }
 
                 players[activeUser.id] = {
                     uid: activeUser.id,
                     name: document.getElementById('join-player-name-input').value.trim() || activeUser.name,
+                    photo: activeUser.photo,
                     joinedAt: Date.now()
                 };
                 currentData.players = players;
                 return currentData;
-            }, async (error, committed) => {
+            }, async (error, committed, snapshot) => {
                 if (error || !committed) {
                     showToast("ম্যাচটি ইতিমধ্যে পূর্ণ হয়ে গেছে!", "error");
                     closeModal('join-match-modal');
                     return;
                 }
 
-                // Balance deduction
                 await database.ref(`users/${activeUser.id}/depositBalance`).transaction(b => Math.max(0, (b || 0) - deductDeposit));
                 if (deductWinning > 0) {
                     await database.ref(`users/${activeUser.id}/winningBalance`).transaction(b => Math.max(0, (b || 0) - deductWinning));
                 }
 
-                // Record in User Match History
+                const currentPlayers = snapshot.val()?.players ? Object.values(snapshot.val().players) : [];
+
                 await database.ref(`users/${activeUser.id}/match_history/${pendingMatchToJoin.id}`).set({
                     matchNo: pendingMatchToJoin.matchNo,
                     gameType: pendingMatchToJoin.gameType,
+                    mode: pendingMatchToJoin.mode || '1v1',
                     fee: pendingMatchToJoin.fee,
                     prize: pendingMatchToJoin.prize,
                     status: "JOINED",
+                    playersSnapshot: currentPlayers,
                     timestamp: Date.now()
                 });
 
@@ -1543,9 +1541,17 @@
             });
         }
 
-        // ================= RESULT SCREENSHOT SUBMIT (DUPLICATE PROOF & ATOMIC BALANCE) =================
+        // ================= UPLOAD RESULT (AUTO ROOM CODE DETECT) =================
         function openUploadResultModal() {
-            document.getElementById('input-result-room').value = '';
+            const inputRoom = document.getElementById('input-result-room');
+            inputRoom.value = '';
+
+            // Find joined match that is currently active and not finished
+            const activeJoinedMatch = realtimeMatches.find(m => m.myJoined && m.roomCode && m.status !== 'COMPLETED');
+            if (activeJoinedMatch) {
+                inputRoom.value = activeJoinedMatch.roomCode;
+            }
+
             document.getElementById('upload-result-modal').classList.remove('hidden');
         }
 
@@ -1583,11 +1589,10 @@
 
             if (!matchedObj) return showToast("কোনো সক্রিয় ম্যাচের সাথে এই কোড মেলেনি!", "error");
 
-            // Prevent duplicate submissions for the same match
             const subRef = gameSupportDb.ref(`match_submissions/${matchedObj.id}`);
             const checkSub = await subRef.once('value');
             if (checkSub.exists()) {
-                return showToast("এই ম্যাচের ফলাফল ইতিমধ্যে জমা দেওয়া হয়েছে এবং পর্যালোচনায় রয়েছে!", "error");
+                return showToast("এই ম্যাচের ফলাফল ইতিমধ্যে জমা দেওয়া হয়েছে!", "error");
             }
 
             await subRef.set({
@@ -1602,10 +1607,10 @@
             await gameSupportDb.ref(`matches/${matchedObj.id}`).update({ status: "UNDER_REVIEW" });
 
             closeModal('upload-result-modal');
-            showToast("রেজাল্ট স্ক্রিনশট জমা হয়েছে। অ্যাডমিন রিভিউ করে অ্যাপ্রুভ করবেন।", "success");
+            showToast("রেজাল্ট স্ক্রিনশট জমা হয়েছে।", "success");
         }
 
-        // ================= REDEEM PROMO CODE (FIREBASE VERIFIED & NON-REUSABLE) =================
+        // ================= REDEEM PROMO CODE =================
         function openRedeemModal() {
             document.getElementById('input-redeem-code').value = '';
             document.getElementById('redeem-code-modal').classList.remove('hidden');
@@ -1618,7 +1623,7 @@
             const promoRef = database.ref(`promo_codes/${code}`);
             promoRef.transaction(promo => {
                 if (!promo || promo.isUsed || promo.active === false) {
-                    return; // Abort
+                    return;
                 }
                 promo.isUsed = true;
                 promo.usedBy = activeUser.id;
@@ -1635,23 +1640,20 @@
             });
         }
 
-        // ================= COMBINED HISTORIES (MATCH, DEPOSIT, WITHDRAW) =================
+        // ================= HISTORIES (MATCH WITH OPPONENT VS, DEPOSIT, WITHDRAW) =================
         function listenAllHistories() {
-            // Match History
             database.ref(`users/${activeUser.id}/match_history`).on('value', snap => {
                 userMatchHistory = [];
                 if (snap.exists()) snap.forEach(c => userMatchHistory.unshift(c.val()));
                 if (currentHistoryTab === 'matches') renderHistoryView();
             });
 
-            // Deposit History
             database.ref(`users/${activeUser.id}/deposits`).on('value', snap => {
                 userDepositHistory = [];
                 if (snap.exists()) snap.forEach(c => userDepositHistory.unshift(c.val()));
                 if (currentHistoryTab === 'deposits') renderHistoryView();
             });
 
-            // Withdraw History
             database.ref('withdrawals').orderByChild('userId').equalTo(activeUser.id).on('value', snap => {
                 userWithdrawHistory = [];
                 if (snap.exists()) snap.forEach(c => userWithdrawHistory.unshift(c.val()));
@@ -1672,18 +1674,64 @@
 
             if (currentHistoryTab === 'matches') {
                 if (!userMatchHistory.length) {
-                    container.innerHTML = `<div class="p-8 text-center text-slate-500 text-xs">কোনো ম্যাচ রেকর্ড নেই।</div>`;
+                    container.innerHTML = `<div class="p-8 text-center text-slate-500 text-xs">কোনো টুর্নামেন্ট ম্যাচ রেকর্ড নেই।</div>`;
                     return;
                 }
-                container.innerHTML = userMatchHistory.map(m => `
-                    <div class="p-3.5 bg-[#121a2d] border border-white/5 rounded-2xl flex items-center justify-between">
-                        <div>
-                            <h4 class="font-bold text-white text-xs">${(m.gameType || 'GAME').toUpperCase()} ${m.matchNo}</h4>
-                            <span class="text-[10px] text-slate-400">ফি: ৳${m.fee} | প্রাইজ: ৳${m.prize}</span>
+
+                container.innerHTML = userMatchHistory.map(item => {
+                    const isOneVsOne = (item.mode === '1v1' || !item.mode);
+                    const players = item.playersSnapshot || [];
+
+                    let p1Photo = activeUser.photo;
+                    let p2Photo = "https://cdn-icons-png.flaticon.com/512/847/847969.png";
+                    let p2Name = "Opponent";
+
+                    const opponentList = players.filter(p => p.uid !== activeUser.id);
+                    if (opponentList.length > 0) {
+                        p2Photo = opponentList[0].photo || p2Photo;
+                        p2Name = opponentList[0].name || p2Name;
+                    }
+
+                    return `
+                    <div class="bg-[#121a2d] p-4 rounded-3xl border border-white/5 shadow-md space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2 py-0.5 rounded-lg bg-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-wider">${item.gameType || 'GAME'} ${item.matchNo}</span>
+                            <span class="px-2.5 py-0.5 rounded-full border text-[10px] font-black text-emerald-400 bg-emerald-500/10 border-emerald-500/30">${item.status}</span>
                         </div>
-                        <span class="text-xs font-bold px-2 py-1 rounded bg-blue-500/10 text-blue-400">${m.status}</span>
-                    </div>
-                `).join('');
+
+                        ${isOneVsOne ? `
+                            <div class="bg-[#090f1d] p-3 rounded-2xl border border-white/5 flex items-center justify-around">
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-12 h-12 rounded-full border-2 border-emerald-500 overflow-hidden bg-slate-800">
+                                        <img src="${p1Photo}" class="w-full h-full object-cover rounded-full" alt="You">
+                                    </div>
+                                    <span class="text-[10px] font-bold text-slate-300">You</span>
+                                </div>
+                                <span class="text-base font-black italic text-rose-500">VS</span>
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-12 h-12 rounded-full border-2 border-rose-500 overflow-hidden bg-slate-800">
+                                        <img src="${p2Photo}" class="w-full h-full object-cover rounded-full" alt="Opponent">
+                                    </div>
+                                    <span class="text-[10px] font-bold text-slate-400 truncate max-w-[80px]">${p2Name}</span>
+                                </div>
+                            </div>
+                        ` : `
+                            <div class="bg-[#090f1d] p-2.5 rounded-2xl border border-white/5 flex gap-2 overflow-x-auto">
+                                ${players.map(p => `
+                                    <div class="flex items-center gap-1.5 bg-slate-800/80 px-2 py-1 rounded-xl">
+                                        <img src="${p.photo || p2Photo}" class="w-5 h-5 rounded-full object-cover">
+                                        <span class="text-[10px] text-slate-300 font-bold">${p.name}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `}
+
+                        <div class="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-white/5">
+                            <span>ফি: <b>৳${item.fee}</b> | প্রাইজ: <b class="text-emerald-400">৳${item.prize}</b></span>
+                            <span>${new Date(item.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                        </div>
+                    </div>`;
+                }).join('');
             } else if (currentHistoryTab === 'deposits') {
                 if (!userDepositHistory.length) {
                     container.innerHTML = `<div class="p-8 text-center text-slate-500 text-xs">কোনো ডিপোজিট রেকর্ড নেই।</div>`;
@@ -1710,6 +1758,50 @@
                             <span class="text-[10px] text-slate-400">${w.method} (${w.accountNumber})</span>
                         </div>
                         <span class="text-xs font-bold px-2 py-1 rounded ${w.status === 'success' ? 'text-emerald-400 bg-emerald-500/10' : 'text-amber-400 bg-amber-500/10'}">${w.status}</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // ================= FILTERED NOTIFICATIONS LOGIC =================
+        function listenNotificationBadge() {
+            database.ref(`users/${activeUser.id}/notifications`).on('value', snap => {
+                notificationsList = [];
+                if (snap.exists()) {
+                    snap.forEach(c => {
+                        const note = c.val();
+                        // Filter: only show MATCH_CODE, DEPOSIT, WITHDRAW, and ADMIN
+                        if (['MATCH_CODE', 'DEPOSIT', 'WITHDRAW', 'ADMIN'].includes(note.category)) {
+                            notificationsList.unshift(note);
+                        }
+                    });
+                }
+                const badge = document.getElementById('notif-badge');
+                if (notificationsList.length > 0) {
+                    badge.classList.remove('hidden');
+                    badge.textContent = notificationsList.length > 9 ? '9+' : notificationsList.length;
+                } else {
+                    badge.classList.add('hidden');
+                }
+            });
+        }
+
+        function toggleNotificationModal() {
+            const modal = document.getElementById('notification-modal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                const container = document.getElementById('notification-list-container');
+                if (!notificationsList.length) {
+                    container.innerHTML = `<div class="text-center text-slate-500 py-16 text-xs">কোনো গুরুত্বপূর্ণ নোটিফিকেশন নেই।</div>`;
+                    return;
+                }
+                container.innerHTML = notificationsList.map(n => `
+                    <div class="bg-[#10192e] p-3.5 rounded-2xl border border-white/5 space-y-1">
+                        <div class="flex items-center justify-between">
+                            <h5 class="font-bold text-xs text-amber-400"><i class="fas fa-bell mr-1"></i> ${n.title}</h5>
+                            <span class="text-[10px] text-slate-400">${n.time || ''}</span>
+                        </div>
+                        <p class="text-xs text-slate-300">${n.message}</p>
                     </div>
                 `).join('');
             }
@@ -1764,7 +1856,6 @@
             const activeWallet = (activeUser.boundWallets || [])[0];
             if (!activeWallet) return showToast("আগে ওয়ালেট যুক্ত করুন!", "error");
 
-            // Atomic deduction
             await database.ref(`users/${activeUser.id}/winningBalance`).transaction(b => Math.max(0, (b || 0) - amt));
 
             await database.ref('withdrawals').push({
@@ -1775,6 +1866,15 @@
                 accountNumber: activeWallet.number,
                 accountName: activeWallet.name,
                 status: "pending",
+                timestamp: Date.now()
+            });
+
+            // Notification: WITHDRAW
+            await database.ref(`users/${activeUser.id}/notifications`).push({
+                category: "WITHDRAW",
+                title: "উত্তোলন অনুরোধ",
+                message: `আপনার ৳${amt} উত্তোলনের অনুরোধ প্রসেসিংয়ে রয়েছে।`,
+                time: "Just now",
                 timestamp: Date.now()
             });
 
@@ -1820,21 +1920,6 @@
         function openBindWalletModal() { document.getElementById('bind-wallet-modal').classList.remove('hidden'); }
         function closeBindWalletModal() { document.getElementById('bind-wallet-modal').classList.add('hidden'); }
         function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-        function toggleNotificationModal() { document.getElementById('notification-modal').classList.toggle('hidden'); }
-
-        function listenNotificationBadge() {
-            database.ref(`users/${activeUser.id}/notifications`).on('value', snap => {
-                notificationsList = [];
-                if (snap.exists()) snap.forEach(c => notificationsList.unshift(c.val()));
-                const badge = document.getElementById('notif-badge');
-                if (notificationsList.length > 0) {
-                    badge.classList.remove('hidden');
-                    badge.textContent = notificationsList.length;
-                } else {
-                    badge.classList.add('hidden');
-                }
-            });
-        }
 
         function navigateTo(pageId) {
             document.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
@@ -1882,7 +1967,7 @@
         }
 
         function copyReferralLink() {
-            navigator.clipboard.writeText(`https://t.me/EXPERTearn_team?start=ref_${activeUser.id}`).then(() => {
+            navigator.clipboard.writeText(`https://t.me/ZOROTOUR?start=ref_${activeUser.id}`).then(() => {
                 showToast("রেফারেল লিংক কপি হয়েছে!", "success");
             });
         }
