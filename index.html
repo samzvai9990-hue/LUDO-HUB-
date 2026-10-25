@@ -1799,7 +1799,7 @@
     <!-- ======================= JAVASCRIPT APPLICATION CORE ======================= -->
     <script>
         const OFFICIAL_ADMIN_ID = "7358825471";
-        const OFFICIAL_LOGO = "https://i.postimg.cc/vmSBzy63/file-00000000eb4c81faa545e57c85285455.png";
+        const OFFICIAL_LOGO = "https://i.postimg.cc/xdFzVD44/file-0000000022b881fa9e4428312add004d.png";
         const OFFICIAL_TITLE = "ZORO TURN Support";
         const IMGBB_API_KEY = "c6d16ab261fe68bcfc42d6f9ef10b7da";
         
@@ -3756,9 +3756,9 @@
 
         function getGameIcon(type) {
             switch(type) {
-                case 'freefire': return 'https://cdn-icons-png.flaticon.com/512/808/808439.png';
-                case 'snake': return 'https://cdn-icons-png.flaticon.com/512/2865/2865488.png';
-                default: return 'https://cdn-icons-png.flaticon.com/512/806/806131.png';
+                case 'freefire': return 'https://i.postimg.cc/br84zb7p/images-(13).jpg';
+                case 'snake': return 'https://i.postimg.cc/JzBx20gV/images-(14).jpg';
+                default: return 'https://i.postimg.cc/W4vGYngj/download-(3).jpg';
             }
         }
 
@@ -3865,7 +3865,7 @@
                 return showToast("ম্যাচ পূর্ণ হয়ে যাওয়ায় রিফান্ড অপশন লক করা হয়েছে!", "error");
             }
 
-            if (confirm(`আপনি কি ম্যাচটি থেকে বের হয়ে ৳${m.fee} গেমিং ডিপোজিট রিফান্ড নিতে চান?`)) {
+            if (confirm(`আপনি কি ম্যাচটি থেকে বের হয়ে ৳${m.fee} রিফান্ড নিতে চান?`)) {
                 gameSupportDb.ref(`matches/${m.id}/players/${activeUser.id}`).remove();
 
                 activeUser.depositBalance += parseFloat(m.fee);
@@ -3878,13 +3878,13 @@
 
                 database.ref(`users/${activeUser.id}/notifications`).push({
                     title: "ম্যাচ রিফান্ড সফল",
-                    message: `ম্যাচ ${m.matchNo} থেকে ৳${m.fee} আপনার মেইন গেমিং ব্যালেন্সে জমা হয়েছে।`,
+                    message: `ম্যাচ ${m.matchNo} থেকে ৳${m.fee} আপনার ব্যালেন্সে জমা হয়েছে।`,
                     time: "Just now",
                     timestamp: Date.now(),
                     isRead: false
                 });
 
-                showToast(`৳${m.fee} মেইন ডিপোজিট ব্যালেন্সে রিফান্ড করা হয়েছে!`, "success");
+                showToast(`৳${m.fee} ব্যালেন্সে রিফান্ড করা হয়েছে!`, "success");
             }
         }
 
@@ -3925,7 +3925,7 @@
 
                             database.ref(`users/${inviterId}/notifications`).push({
                                 title: "রেফারেল ডিপোজিট বোনাস!",
-                                message: `আপনার আমন্ত্রিত বন্ধু প্রথমবার ৳${depositAmount} ডিপোজিট করায় আপনি ৳১০ বোনাস পেয়েছেন!`,
+                                message: `আপনার আমন্ত্রিত বন্ধু প্রথমবার ৳${depositAmount} ডিপোজিট করায় আপনি ৳২০ বোনাস পেয়েছেন!`,
                                 time: "Just now",
                                 timestamp: Date.now(),
                                 isRead: false
@@ -4003,7 +4003,7 @@
                 const players = item.playersSnapshot || [];
 
                 let p1Photo = activeUser.photo;
-                let p2Photo = "https://cdn-icons-png.flaticon.com/512/847/847969.png";
+                let p2Photo = "https://i.postimg.cc/Sssfcfw5/images-(16).jpg";
                 let p2Name = "Opponent";
 
                 const opponentList = players.filter(p => p.uid !== activeUser.id);
