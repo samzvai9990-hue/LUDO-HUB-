@@ -681,6 +681,12 @@
                 <span id="notif-badge" class="notif-badge-pill hidden">0</span>
             </button>
 
+            <!-- পয়েন্ট ব্যাজ -->
+            <div onclick="navigateTo('task-page')" class="flex items-center gap-1 bg-[#162033] border border-yellow-500/40 px-2 py-1.5 rounded-2xl cursor-pointer hover:border-yellow-400 transition shadow-sm active:scale-95" title="আপনার কয়েন পয়েন্ট">
+                <span class="text-xs">🪙</span>
+                <span id="header-points-val" class="text-xs font-black text-yellow-300 font-mono">0</span>
+            </div>
+
             <div onclick="navigateTo('wallet-page')" class="flex items-center gap-1.5 bg-[#121c35] border border-amber-400/30 px-3 py-1.5 rounded-2xl cursor-pointer hover:border-amber-400 transition shadow-sm active:scale-95">
                 <div class="w-5 h-5 rounded-full bg-amber-400 flex items-center justify-center text-slate-950 font-black text-xs">৳</div>
                 <span id="header-balance-val" class="text-xs font-black text-white">0.00</span>
@@ -725,7 +731,62 @@
                 <div class="h-[1px] bg-slate-700/60 flex-1"></div>
             </div>
 
-            <div id="game-categories-container" class="space-y-3"></div>
+            <!-- DIRECT ARENAS: LUDO, SNAKE, FREE FIRE (Carrom, Bead16 বাদ দেওয়া হয়েছে) -->
+            <div id="game-categories-container" class="space-y-3">
+                <div onclick="openGameArena('Ludo King (লুডো কিং)', 'ludo')" class="bg-[#121a2d] rounded-3xl p-4 border border-blue-500/30 cursor-pointer hover:scale-[1.01] transition relative overflow-hidden shadow-lg">
+                    <div class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-rose-500 text-white text-[10px] font-black uppercase tracking-wider shadow">
+                        HOT
+                    </div>
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-14 h-14 rounded-2xl bg-slate-900 border border-white/10 p-1 flex items-center justify-center shadow-md">
+                            <img src="https://cdn-icons-png.flaticon.com/512/806/806131.png" class="w-full h-full object-cover rounded-xl" alt="Ludo">
+                        </div>
+                        <div>
+                            <h4 class="text-base font-black text-white flex items-center gap-1.5">
+                                Ludo King (লুডো কিং)
+                            </h4>
+                            <p class="text-xs text-slate-400 font-bold mt-0.5">১v১, ১v২ ও ১v৩ লাইভ চ্যালেঞ্জ</p>
+                            <span class="text-[11px] text-emerald-400 font-extrabold">(ম্যাচগুলো লাইভ রয়েছে)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="openGameArena('Snake King (সাপ লুডু)', 'snake')" class="bg-[#121a2d] rounded-3xl p-4 border border-teal-500/30 cursor-pointer hover:scale-[1.01] transition relative overflow-hidden shadow-lg">
+                    <div class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-teal-500 text-slate-950 text-[10px] font-black uppercase tracking-wider shadow">
+                        NEW
+                    </div>
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-14 h-14 rounded-2xl bg-slate-900 border border-white/10 p-1 flex items-center justify-center shadow-md">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2865/2865488.png" class="w-full h-full object-cover rounded-xl" alt="Snake">
+                        </div>
+                        <div>
+                            <h4 class="text-base font-black text-white flex items-center gap-1.5">
+                                Snake King (সাপ লুডু)
+                            </h4>
+                            <p class="text-xs text-slate-400 font-bold mt-0.5">ক্লাসিক স্নেক অ্যান্ড ল্যাডার টুর্নামেন্ট</p>
+                            <span class="text-[11px] text-emerald-400 font-extrabold">(ম্যাচগুলো লাইভ রয়েছে)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="openGameArena('Free Fire (ফ্রি ফায়ার)', 'freefire')" class="bg-[#121a2d] rounded-3xl p-4 border border-orange-500/30 cursor-pointer hover:scale-[1.01] transition relative overflow-hidden shadow-lg">
+                    <div class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-white text-[10px] font-black uppercase tracking-wider shadow">
+                        PLAY NOW
+                    </div>
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-14 h-14 rounded-2xl bg-slate-900 border border-white/10 p-1 flex items-center justify-center shadow-md">
+                            <img src="https://cdn-icons-png.flaticon.com/512/808/808439.png" class="w-full h-full object-cover rounded-xl" alt="Free Fire">
+                        </div>
+                        <div>
+                            <h4 class="text-base font-black text-white flex items-center gap-1.5">
+                                Free Fire (ফ্রি ফায়ার)
+                            </h4>
+                            <p class="text-xs text-slate-400 font-bold mt-0.5">CS & Battle Royale Matches</p>
+                            <span class="text-[11px] text-emerald-400 font-extrabold">(ম্যাচগুলো লাইভ রয়েছে)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- ======================= 2. MATCHES LIST PAGE ======================= -->
@@ -779,14 +840,54 @@
             <div id="tournament-matches-container" class="space-y-3 pt-1"></div>
         </div>
 
-        <!-- ======================= 3. DYNAMIC TASKS PAGE ======================= -->
+        <!-- ======================= 3. DYNAMIC TASKS PAGE (POINTS SYSTEM & EXCHANGE) ======================= -->
         <div id="task-page" class="sub-page space-y-4">
             <div class="bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 p-5 rounded-3xl text-white shadow-lg space-y-2 relative overflow-hidden">
-                <span class="px-2.5 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-black uppercase tracking-wider border border-white/30">Free Rewards</span>
-                <h2 class="text-xl font-black">Tasks & Free Cash</h2>
-                <p class="text-xs text-orange-100 leading-relaxed">টাস্কগুলো পূরণ করে সরাসরি আপনার মেইন গেমিং ডিপোজিট ব্যালেন্সে ফ্রি আয় করুন!</p>
+                <span class="px-2.5 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-black uppercase tracking-wider border border-white/30">Free Coin Points</span>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-black">Tasks & 🪙 Coins</h2>
+                        <p class="text-xs text-orange-100 leading-relaxed">টাস্ক পূরণ করে 🪙 কয়েন অর্জন করুন, লিডারবোর্ডে এগিয়ে থাকুন এবং ক্যাশ ব্যালেন্স এক্সচেঞ্জ করুন!</p>
+                    </div>
+                </div>
             </div>
 
+            <!-- COIN CONVERT/EXCHANGE CARD -->
+            <div class="bg-[#121c35] p-4 rounded-3xl border border-yellow-500/30 shadow-lg space-y-3">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl">🪙</span>
+                        <div>
+                            <span class="text-[10px] font-black text-slate-400 uppercase tracking-wider block">আপনার কয়েন পয়েন্ট</span>
+                            <span id="task-page-points-val" class="text-xl font-black text-yellow-300 font-mono">0 🪙</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[10px] font-bold text-slate-400 block">এক্সচেঞ্জ রেট:</span>
+                        <span class="text-xs font-black text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md">২০০ 🪙 = ৳৫ টাকা</span>
+                    </div>
+                </div>
+
+                <div id="exchange-lock-warning" class="hidden bg-rose-950/50 border border-rose-500/30 p-2.5 rounded-xl text-center">
+                    <p class="text-xs font-bold text-rose-300 flex items-center justify-center gap-1.5">
+                        <i class="fas fa-lock"></i> <span id="exchange-lock-warning-text">লিডারবোর্ড রিসেটের সময় কাছাকাছি থাকায় কয়েন এক্সচেঞ্জ সাময়িক বন্ধ রয়েছে!</span>
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="handleExchangePoints()" id="btn-exchange-points" class="py-2.5 px-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 text-white rounded-xl text-xs font-black flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition">
+                        <i class="fas fa-repeat"></i>
+                        <span>২০০ 🪙 = ৳৫ টাকা এক্সচেঞ্জ</span>
+                    </button>
+                    <button onclick="navigateTo('leaderboard-page')" class="py-2.5 px-3 bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 text-slate-950 rounded-xl text-xs font-black flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition">
+                        <i class="fas fa-trophy"></i>
+                        <span>কয়েন লিডারবোর্ড দেখুন</span>
+                    </button>
+                </div>
+                <p class="text-[10px] text-slate-400 leading-tight">* নোট: কয়েন এক্সচেঞ্জ করলে উক্ত পয়েন্ট আপনার লিডারবোর্ড র‍্যাংক থেকেও স্বয়ংক্রিয়ভাবে কমে যাবে।</p>
+            </div>
+
+            <!-- DAILY CHECKIN -->
             <div class="bg-[#121a2d] p-4 rounded-2xl border border-white/10 shadow-sm flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
@@ -794,11 +895,11 @@
                     </div>
                     <div>
                         <h4 class="font-extrabold text-xs text-white">দৈনিক চেক-ইন বোনাস</h4>
-                        <p class="text-[11px] text-slate-400" id="daily-checkin-subtitle">প্রতিদিন ফ্রিতে ব্যালেন্স নিন</p>
+                        <p class="text-[11px] text-slate-400" id="daily-checkin-subtitle">প্রতিদিন ফ্রিতে কয়েন পয়েন্ট নিন</p>
                     </div>
                 </div>
                 <button id="btn-daily-checkin" onclick="handleDailyCheckin()" class="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-xl font-extrabold text-xs shadow-sm transition active:scale-95 flex items-center gap-1">
-                    <span>+৳০.২০ Claim</span>
+                    <span>+১০ 🪙 Claim</span>
                 </button>
             </div>
 
@@ -891,7 +992,7 @@
                 </button>
             </div>
 
-            <!-- 1. MATCH HISTORY (RESTORED VS LAYOUT WITH OPPONENT PHOTO) -->
+            <!-- 1. MATCH HISTORY -->
             <div id="history-container-matches" class="space-y-3 min-h-[300px]"></div>
 
             <!-- 2. DEPOSIT HISTORY -->
@@ -901,22 +1002,22 @@
             <div id="history-container-withdrawals" class="space-y-3 min-h-[300px] hidden"></div>
         </div>
 
-        <!-- ======================= 6. LEADERBOARD PAGE ======================= -->
+        <!-- ======================= 6. LEADERBOARD PAGE (COIN POINTS RANKING) ======================= -->
         <div id="leaderboard-page" class="sub-page space-y-4">
             <div class="flex items-center gap-2 pb-1">
                 <button onclick="navigateTo('profile-page')" class="w-9 h-9 rounded-full bg-slate-800 text-white flex items-center justify-center border border-white/10 active:scale-95">
                     <i class="fas fa-arrow-left text-sm"></i>
                 </button>
-                <h2 class="text-base font-black text-white" style="font-family: 'Russo One', sans-serif;">টপ প্লেয়ার লিডারবোর্ড</h2>
+                <h2 class="text-base font-black text-white" style="font-family: 'Russo One', sans-serif;">টপ পয়েন্ট লিডারবোর্ড</h2>
             </div>
 
-            <!-- 7-DAY PRIZE POOL & TIMER CARD -->
+            <!-- PRIZE POOL & TIMER CARD -->
             <div class="bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 p-4 rounded-3xl text-center space-y-2 shadow-lg">
                 <div class="flex items-center justify-center gap-2 text-xs font-black bg-black/30 px-3 py-1 rounded-full w-max mx-auto border border-white/10">
                     <i class="fas fa-clock text-amber-300"></i>
-                    <span>র‍্যাংক শেষ হতে বাকি: <b id="leaderboard-countdown" class="text-white font-mono">০ দিন ০০:০০:০০</b></span>
+                    <span>র‍্যাংক রিসেট হতে বাকি: <b id="leaderboard-countdown" class="text-white font-mono">০ দিন ০০:০০:০০</b></span>
                 </div>
-                <h3 class="text-base font-black text-white">সাপ্তাহিক টপ ৩ প্লেয়ার ক্যাশ বোনাস!</h3>
+                <h3 class="text-base font-black text-white">সর্বাধিক 🪙 কয়েন অর্জনকারী টপ ৩ প্লেয়ার ক্যাশ বোনাস!</h3>
                 <div class="grid grid-cols-3 gap-2 pt-1 text-slate-900 font-black text-xs">
                     <div class="bg-amber-100 p-2 rounded-xl border border-amber-300 shadow">
                         <span class="block text-[10px] text-amber-800">১ম স্থান</span>
@@ -1085,7 +1186,7 @@
                             <i class="fas fa-trophy"></i>
                         </div>
                         <div>
-                            <h5 class="text-sm font-black text-white">Leaderboard (লিডারবোর্ড)</h5>
+                            <h5 class="text-sm font-black text-white">Coin Points Leaderboard</h5>
                             <p class="text-[11px] text-slate-400">সাপ্তাহিক টপ ৩ প্লেয়ার বোনাস জিতুন</p>
                         </div>
                     </div>
@@ -1304,7 +1405,7 @@
     <!-- FLOATING BOTTOM NAVIGATION -->
     <nav class="bottom-nav">
         <div class="nav-item" data-page="tasks" onclick="navigateTo('task-page')">
-            <i class="fas fa-check-square text-lg"></i>
+            <i class="fas fa-coins text-lg text-yellow-400"></i>
             <span>টাস্ক</span>
         </div>
         <div class="nav-item" data-page="wallet" onclick="navigateTo('wallet-page')">
@@ -1666,7 +1767,7 @@
         // Telegram Bot API Token for real verification
         const TG_BOT_TOKEN = "7726597793:AAGd680r3WbI3oT8z_0-mB_5Hq1zY2W0kG0";
 
-        // ================= CONFIGURATION 1 (USER ACCOUNT, WALLET, DEPOSIT, WITHDRAW, REFERRAL) =================
+        // ================= CONFIGURATION 1 (USER ACCOUNT, WALLET, DEPOSIT, WITHDRAW, REFERRAL, POINTS) =================
         const userFirebaseConfig = {
             apiKey: "AIzaSyATMvfJ1-hruCYCq7bJWghYBf-rJd7fuyU",
             authDomain: "zoro-turn-1.firebaseapp.com",
@@ -1679,7 +1780,7 @@
         const userApp = firebase.initializeApp(userFirebaseConfig, "userAppInstance");
         const database = userApp.database(); // Primary user account database
 
-        // ================= CONFIGURATION 2 (MATCHES, SUPPORT, TASKS, CATEGORIES) =================
+        // ================= CONFIGURATION 2 (MATCHES, SUPPORT, TASKS) =================
         const gameSupportFirebaseConfig = {
             apiKey: "AIzaSyDUKTsCPLqc64J8PhNubphnhIAoQuqkg8I",
             authDomain: "zoro-turn-2.firebaseapp.com",
@@ -1692,7 +1793,6 @@
         const gameSupportApp = firebase.initializeApp(gameSupportFirebaseConfig, "gameSupportAppInstance");
         const gameSupportDb = gameSupportApp.database(); // Matches, Support, Tasks DB
 
-        // নতুন একাউন্ট খুললে ডিফল্ট ব্যালেন্স ০.০০ (১০০ টাকার ব্যালেন্স বন্ধ করা হয়েছে)
         let activeUser = {
             id: "6954647230",
             chatId: "6954647230",
@@ -1700,6 +1800,7 @@
             photo: "https://i.postimg.cc/L4YZZKsv/IMG-20260919-214336-790.jpg",
             depositBalance: 0.00,  // মেইন গেমিং ডিপোজিট ব্যালেন্স (উত্তোলনযোগ্য নয়)
             winningBalance: 0.00,  // জেতা ব্যালেন্স (শুধুমাত্র এটি উত্তোলনযোগ্য)
+            coinPoints: 0,         // 🪙 টাস্ক পয়েন্ট (লিডারবোর্ড ও এক্সচেঞ্জ)
             boundWallets: [],
             completedTasks: [],
             lastDailyCheckin: 0,
@@ -1709,7 +1810,6 @@
         const taskActiveTimers = {};
         let selectedGameCategory = 'ludo';
         let realtimeMatches = [];
-        let gameCategories = [];
         let pendingJoinMatchId = null;
         let currentActiveFilter = 'all';
 
@@ -1728,8 +1828,11 @@
         let revealedWallets = new Set();
         let notifiedRoomCodeMatches = new Set();
 
-        // 7-day leaderboard
+        // 7-day leaderboard & exchange lock config
         let currentLeaderboardRoundStart = 0;
+        let leaderboardRoundDurationHours = 168; // ডিফল্ট ৭ দিন (ফায়ারবেস থেকে কনফিগার হবে)
+        let exchangeLockHoursBeforeReset = 10;   // ডিফল্ট ১০ ঘণ্টা আগে বন্ধ হবে (ফায়ারবেস থেকে কনফিগার হবে)
+        let isExchangeLockedNow = false;
         let leaderboardCountdownTimer = null;
 
         // Support desk state
@@ -1789,7 +1892,7 @@
                 lastSeen: Date.now()
             });
 
-            // ব্যালেন্স চেক: নতুনদের জন্য ০.০০ দিয়ে ইনিশিয়ালাইজ করা
+            // ব্যালেন্স ও পয়েন্ট চেক: নতুনদের জন্য ইনিশিয়ালাইজ করা
             database.ref(`users/${activeUser.id}`).once('value', snap => {
                 const val = snap.val() || {};
                 if (val.depositBalance === undefined) {
@@ -1798,9 +1901,12 @@
                 if (val.winningBalance === undefined) {
                     database.ref(`users/${activeUser.id}/winningBalance`).set(0.00);
                 }
+                if (val.coinPoints === undefined) {
+                    database.ref(`users/${activeUser.id}/coinPoints`).set(0);
+                }
             });
 
-            // Listen balances (Config 1)
+            // Listen balances & Coin points (Config 1)
             database.ref(`users/${activeUser.id}/depositBalance`).on('value', snap => {
                 if (snap.exists()) activeUser.depositBalance = parseFloat(snap.val()) || 0;
                 updateUserInterface();
@@ -1808,6 +1914,11 @@
 
             database.ref(`users/${activeUser.id}/winningBalance`).on('value', snap => {
                 if (snap.exists()) activeUser.winningBalance = parseFloat(snap.val()) || 0;
+                updateUserInterface();
+            });
+
+            database.ref(`users/${activeUser.id}/coinPoints`).on('value', snap => {
+                if (snap.exists()) activeUser.coinPoints = parseInt(snap.val(), 10) || 0;
                 updateUserInterface();
             });
 
@@ -1895,8 +2006,7 @@
             listenDynamicTasks();
             listenAllHistories();
             listenPendingMatchReviews();
-            initLeaderboardCountdown();
-            loadLeaderboard();
+            initLeaderboardEngine();
             checkReturnPaymentStatus();
 
             updateUserInterface();
@@ -1934,6 +2044,13 @@
             document.getElementById('card-deposit-bal').textContent = `৳ ${activeUser.depositBalance.toFixed(2)}`;
             document.getElementById('card-winning-bal').textContent = `৳ ${activeUser.winningBalance.toFixed(2)}`;
 
+            // Points UI
+            const headerPoints = document.getElementById('header-points-val');
+            if (headerPoints) headerPoints.textContent = activeUser.coinPoints;
+
+            const taskPoints = document.getElementById('task-page-points-val');
+            if (taskPoints) taskPoints.textContent = `${activeUser.coinPoints} 🪙`;
+
             const depPageBal = document.getElementById('deposit-page-balance');
             if (depPageBal) depPageBal.textContent = `৳${total}`;
 
@@ -1961,6 +2078,7 @@
             database.ref(`users/${activeUser.id}`).update({
                 depositBalance: activeUser.depositBalance,
                 winningBalance: activeUser.winningBalance,
+                coinPoints: activeUser.coinPoints,
                 balance: activeUser.depositBalance + activeUser.winningBalance
             });
             updateUserInterface();
@@ -2085,7 +2203,7 @@
             `).join('');
         }
 
-        // --- 3. DYNAMIC TASKS FROM FIREBASE WITH REAL TELEGRAM API VERIFICATION ---
+        // --- 3. DYNAMIC TASKS (COIN POINTS BASED) ---
         let remoteTasks = [];
         function listenDynamicTasks() {
             gameSupportDb.ref('tasks').on('value', snap => {
@@ -2110,7 +2228,7 @@
                     targetChatId: "@ZOROTOUR",
                     targetUrl: "https://t.me/ZOROTOUR",
                     timerSeconds: 7,
-                    reward: 1.00
+                    rewardPoints: 50
                 },
                 "task_visit_partner_bot": {
                     title: "পার্টনার টেলিগ্রাম বট ভিজিট",
@@ -2118,7 +2236,7 @@
                     type: "visit_bot",
                     targetUrl: "https://t.me/Gmail_HUB7bot",
                     timerSeconds: 8,
-                    reward: 1.50
+                    rewardPoints: 75
                 },
                 "task_web_visit_sponsor": {
                     title: "স্পন্সর ওয়েবসাইট ভিজিট",
@@ -2126,7 +2244,7 @@
                     type: "visit_web",
                     targetUrl: "https://google.com",
                     timerSeconds: 5,
-                    reward: 0.50
+                    rewardPoints: 25
                 }
             };
             gameSupportDb.ref('tasks').set(defaults);
@@ -2145,7 +2263,7 @@
 
             container.innerHTML = remoteTasks.map(task => {
                 const isDone = completed.includes(task.id);
-                const reward = parseFloat(task.reward || 0).toFixed(2);
+                const pts = parseInt(task.rewardPoints || task.reward || 30, 10);
 
                 let icon = "fas fa-globe";
                 let tag = "Web Visit";
@@ -2180,7 +2298,7 @@
                                     <i class="fas fa-check"></i> Complete
                                 </span>
                             ` : `
-                                <span class="text-xs font-black text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-full font-mono">+৳${reward} (Gaming)</span>
+                                <span class="text-xs font-black text-yellow-300 bg-yellow-500/10 border border-yellow-500/20 px-2.5 py-1 rounded-full font-mono">+${pts} 🪙</span>
                             `}
                         </div>
                     </div>
@@ -2192,28 +2310,28 @@
                             </div>
                         ` : task.type === 'telegram_join' ? `
                             <div id="join-flow-box-${task.id}">
-                                <button onclick="startTelegramJoinFlow('${task.id}', '${task.targetUrl}', '${task.targetChatId || '@ZOROTOUR'}', ${task.reward}, ${task.timerSeconds || 7})" class="w-full py-3 bg-sky-600 hover:bg-sky-500 text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-md transition active:scale-98">
+                                <button onclick="startTelegramJoinFlow('${task.id}', '${task.targetUrl}', '${task.targetChatId || '@ZOROTOUR'}', ${pts}, ${task.timerSeconds || 7})" class="w-full py-3 bg-sky-600 hover:bg-sky-500 text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-md transition active:scale-98">
                                     <i class="fab fa-telegram-plane"></i>
                                     <span>১. চ্যানেলে যান ও জয়েন করুন</span>
                                 </button>
                             </div>
                         ` : task.type === 'visit_bot' ? `
                             <div id="bot-flow-box-${task.id}" class="space-y-2.5">
-                                <button id="btn-visit-bot-${task.id}" onclick="startBotVisitFlow('${task.id}', '${task.targetUrl}', ${task.timerSeconds || 8}, ${task.reward})" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-md transition active:scale-98">
+                                <button id="btn-visit-bot-${task.id}" onclick="startBotVisitFlow('${task.id}', '${task.targetUrl}', ${task.timerSeconds || 8}, ${pts})" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-md transition active:scale-98">
                                     <i class="fas fa-robot"></i>
                                     <span>১. বটে যান ও Secret Key সংগ্রহ করুন</span>
                                 </button>
                                 <div id="bot-key-submit-wrap-${task.id}" class="hidden space-y-2">
                                     <div class="flex gap-1.5">
                                         <input id="secret-key-input-${task.id}" type="text" placeholder="একক Secret Key লিখুন..." class="flex-grow p-2.5 text-xs rounded-xl bg-[#090f1d] border border-white/10 text-white font-mono font-bold uppercase tracking-wider outline-none">
-                                        <button onclick="submitSingleUseBotKey('${task.id}', ${task.reward})" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-xs shadow transition active:scale-95">
+                                        <button onclick="submitSingleUseBotKey('${task.id}', ${pts})" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-xs shadow transition active:scale-95">
                                             জমা দিন
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         ` : `
-                            <button onclick="startTimedTaskFlow('${task.id}', '${task.targetUrl}', ${task.timerSeconds || 5}, ${task.reward})" class="w-full py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-md transition active:scale-98">
+                            <button onclick="startTimedTaskFlow('${task.id}', '${task.targetUrl}', ${task.timerSeconds || 5}, ${pts})" class="w-full py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-md transition active:scale-98">
                                 <i class="fas fa-external-link-alt"></i>
                                 <span>ওয়েবসাইট ভিজিট করুন (${task.timerSeconds || 5}s)</span>
                             </button>
@@ -2223,7 +2341,7 @@
             }).join('');
         }
 
-        function startTelegramJoinFlow(taskId, channelUrl, targetChatId, reward, duration = 7) {
+        function startTelegramJoinFlow(taskId, channelUrl, targetChatId, rewardPoints, duration = 7) {
             openExternalUrl(channelUrl);
             const container = document.getElementById(`join-flow-box-${taskId}`);
             if (!container) return;
@@ -2251,9 +2369,9 @@
                                 <i class="fas fa-external-link-alt text-xs"></i>
                                 <span>পুনরায় লিংক</span>
                             </button>
-                            <button onclick="verifyTelegramChannelMembership('${taskId}', '${targetChatId}', ${reward})" class="py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-black text-xs flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition">
+                            <button onclick="verifyTelegramChannelMembership('${taskId}', '${targetChatId}', ${rewardPoints})" class="py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-black text-xs flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition">
                                 <i class="fas fa-check-circle text-xs"></i>
-                                <span>২. ভেরিফাই ও রিওয়ার্ড</span>
+                                <span>২. ভেরিফাই ও পয়েন্ট নিন</span>
                             </button>
                         </div>
                     `;
@@ -2261,8 +2379,7 @@
             }, 1000);
         }
 
-        // REAL TELEGRAM API MEMBERSHIP CHECK
-        async function verifyTelegramChannelMembership(taskId, targetChatId, reward) {
+        async function verifyTelegramChannelMembership(taskId, targetChatId, rewardPoints) {
             const tgUid = activeUser.chatId || activeUser.id;
             showToast("টেলিগ্রাম চ্যানেলে জয়েনিং ভেরিফাই হচ্ছে...", "info");
 
@@ -2272,16 +2389,16 @@
                 const data = await res.json();
 
                 if (data.ok && ['creator', 'administrator', 'member'].includes(data.result.status)) {
-                    claimTaskReward(taskId, reward);
+                    claimTaskReward(taskId, rewardPoints);
                 } else {
                     showToast("আপনি এখনো চ্যানেলে জয়েন করেননি! দয়া করে চ্যানেলে জয়েন করুন।", "error");
                 }
             } catch(e) {
-                claimTaskReward(taskId, reward);
+                claimTaskReward(taskId, rewardPoints);
             }
         }
 
-        function startBotVisitFlow(taskId, botUrl, duration = 8, reward) {
+        function startBotVisitFlow(taskId, botUrl, duration = 8, rewardPoints) {
             openExternalUrl(botUrl);
             const btn = document.getElementById(`btn-visit-bot-${taskId}`);
             const keyWrap = document.getElementById(`bot-key-submit-wrap-${taskId}`);
@@ -2312,8 +2429,7 @@
             }, 1000);
         }
 
-        // SINGLE-USE BOT SECRET CODE (একটি কোড শুধু একজন একবার ব্যবহার করতে পারবে)
-        async function submitSingleUseBotKey(taskId, reward) {
+        async function submitSingleUseBotKey(taskId, rewardPoints) {
             const input = document.getElementById(`secret-key-input-${taskId}`);
             const passKey = input ? input.value.trim().toUpperCase() : "";
 
@@ -2335,13 +2451,13 @@
                     usedAt: Date.now()
                 });
 
-                claimTaskReward(taskId, reward);
+                claimTaskReward(taskId, rewardPoints);
             } catch(e) {
                 showToast(e.message || "পাসওয়ার্ড সঠিক নয়!", "error");
             }
         }
 
-        function startTimedTaskFlow(taskId, targetUrl, duration = 5, reward) {
+        function startTimedTaskFlow(taskId, targetUrl, duration = 5, rewardPoints) {
             openExternalUrl(targetUrl);
             const actionContainer = document.getElementById(`task-action-${taskId}`);
             if (!actionContainer) return;
@@ -2362,26 +2478,26 @@
                 if (remainingTime <= 0) {
                     clearInterval(timer);
                     actionContainer.innerHTML = `
-                        <button onclick="claimTaskReward('${taskId}', ${reward})" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-md transition active:scale-98">
-                            <i class="fas fa-gift"></i>
-                            <span>রিওয়ার্ড গ্রহণ করুন (+৳${parseFloat(reward).toFixed(2)})</span>
+                        <button onclick="claimTaskReward('${taskId}', ${rewardPoints})" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-md transition active:scale-98">
+                            <i class="fas fa-coins text-yellow-300"></i>
+                            <span>পয়েন্ট সংগ্রহ করুন (+${rewardPoints} 🪙)</span>
                         </button>
                     `;
                 }
             }, 1000);
         }
 
-        function claimTaskReward(taskId, reward) {
-            reward = parseFloat(reward) || 0;
-            activeUser.depositBalance += reward; // CREDITED TO GAMING / DEPOSIT WALLET
+        function claimTaskReward(taskId, points) {
+            points = parseInt(points, 10) || 0;
+            activeUser.coinPoints = (activeUser.coinPoints || 0) + points; // 🪙 CREDITED AS COIN POINTS
 
             if (!activeUser.completedTasks) activeUser.completedTasks = [];
             activeUser.completedTasks.push(taskId);
 
             database.ref(`users/${activeUser.id}/completedTasks`).set(activeUser.completedTasks);
             database.ref(`users/${activeUser.id}/notifications`).push({
-                title: "টাস্ক বোনাস যুক্ত!",
-                message: `টাস্ক সম্পন্ন করায় ৳${reward.toFixed(2)} আপনার গেমিং ব্যালেন্সে যোগ হয়েছে।`,
+                title: "টাস্ক কয়েন পয়েন্ট যুক্ত!",
+                message: `টাস্ক সম্পন্ন করায় +${points} 🪙 কয়েন আপনার অ্যাকাউন্টে যোগ হয়েছে।`,
                 time: "Just now",
                 timestamp: Date.now(),
                 isRead: false
@@ -2389,7 +2505,37 @@
 
             syncBalancesToFirebase();
             renderDynamicTasksList();
-            showToast(`🎉 অভিনন্দন! ৳${reward.toFixed(2)} গেমিং ব্যালেন্সে যোগ হয়েছে!`, "success");
+            loadLeaderboard();
+            showToast(`🎉 অভিনন্দন! +${points} 🪙 কয়েন অ্যাকাউন্টে যোগ হয়েছে!`, "success");
+        }
+
+        // ================= COIN POINTS TO CASH EXCHANGE (200 Coins = 5 BDT) =================
+        function handleExchangePoints() {
+            if (isExchangeLockedNow) {
+                return showToast("⚠️ লিডারবোর্ড রিসেটের সময় নিকটবর্তী হওয়ায় কয়েন এক্সচেঞ্জ সাময়িক বন্ধ রয়েছে!", "error");
+            }
+
+            if ((activeUser.coinPoints || 0) < 200) {
+                return showToast("আপনার পর্যাপ্ত কয়েন নেই! এক্সচেঞ্জ করতে ন্যূনতম ২০০ 🪙 কয়েন প্রয়োজন।", "error");
+            }
+
+            if (confirm("আপনি কি ২০০ 🪙 পয়েন্ট এক্সচেঞ্জ করে গেমিং ডিপোজিট ওয়ালেটে ৳৫ টাকা নিতে চান? এটি করলে আপনার লিডারবোর্ড থেকে ২০০ কয়েন কমে যাবে।")) {
+                activeUser.coinPoints -= 200;
+                activeUser.depositBalance += 5.00;
+
+                syncBalancesToFirebase();
+                loadLeaderboard();
+
+                database.ref(`users/${activeUser.id}/notifications`).push({
+                    title: "🪙 কয়েন এক্সচেঞ্জ সফল!",
+                    message: `২০০ 🪙 পয়েন্ট এক্সচেঞ্জ করায় ৳৫.০০ আপনার গেমিং ডিপোজিট ব্যালেন্সে যোগ হয়েছে।`,
+                    time: "Just now",
+                    timestamp: Date.now(),
+                    isRead: false
+                });
+
+                showToast("🎉 ২০০ 🪙 সফলভাবে এক্সচেঞ্জ হয়ে ৳৫ টাকা ব্যালেন্সে যুক্ত হয়েছে!", "success");
+            }
         }
 
         // --- 4. IMGBB IMAGE UPLOAD HELPER ---
@@ -2418,7 +2564,6 @@
             const roomBadge = document.getElementById('detected-room-badge');
             const quickSelectWrap = document.getElementById('active-rooms-quick-select');
 
-            // Find joined matches where admin provided a room code and match is not completed
             const joinedWithCode = realtimeMatches.filter(m => m.myJoined && m.roomCode && m.roomCode.trim() !== "" && m.status !== 'COMPLETED');
 
             if (joinedWithCode.length > 0) {
@@ -2492,7 +2637,6 @@
                     throw new Error("এই ম্যাচটি ইতিমধ্যে সম্পন্ন হয়ে গেছে!");
                 }
 
-                // একই রুম কোডে একই ব্যবহারকারীর ডুপ্লিকেট সাবমিট বন্ধ করা
                 const existingSubSnap = await gameSupportDb.ref(`match_submissions/${foundMatch.id}`).once('value');
                 if (existingSubSnap.exists()) {
                     let alreadySubmitted = false;
@@ -2509,7 +2653,6 @@
 
                 const submissionId = 'sub_' + Date.now();
 
-                // Admin Review Queue
                 await gameSupportDb.ref(`match_submissions/${foundMatch.id}/${submissionId}`).set({
                     submissionId: submissionId,
                     matchId: foundMatch.id,
@@ -2530,7 +2673,6 @@
                     lastSubmittedAt: Date.now()
                 });
 
-                // User History update
                 await database.ref(`users/${activeUser.id}/history/${foundMatch.id}`).update({
                     status: "PENDING_REVIEW",
                     screenshot: uploadedResultImageUrl,
@@ -2557,7 +2699,6 @@
             }
         }
 
-        // একটা সাবমিশন এপ্রুভ হলে বাকি সব স্বয়ংক্রিয় বাতিল
         async function approveMatchSubmission(matchId, winnerSubmissionId, winnerUid) {
             try {
                 const subSnap = await gameSupportDb.ref(`match_submissions/${matchId}`).once('value');
@@ -3256,17 +3397,8 @@
             }
         }
 
-        // --- 7. MATCHES, CATEGORIES & ARENA DESIGN (CONFIG 2) ---
+        // --- 7. MATCHES & ARENA DESIGN (DIRECT: LUDO, SNAKE, FREE FIRE) ---
         function listenRealtimeMatches() {
-            gameSupportDb.ref('game_categories').on('value', snap => {
-                if (snap.exists()) {
-                    gameCategories = Object.keys(snap.val()).map(k => ({ key: k, ...snap.val()[k] }));
-                } else {
-                    seedDefaultCategories();
-                }
-                renderGameCategories();
-            });
-
             gameSupportDb.ref('matches').on('value', snap => {
                 realtimeMatches = [];
                 if (snap.exists()) {
@@ -3281,7 +3413,6 @@
                         m.myJoined = m.players && m.players[activeUser.id] !== undefined;
                         realtimeMatches.push(m);
 
-                        // শুধুমাত্র অ্যাডমিন থেকে যুক্ত হওয়া আসল রুম কোড নোটিফিকেশন যাবে
                         if (m.myJoined && m.roomCode && m.roomCode.trim() !== "" && m.status !== 'COMPLETED') {
                             if (!notifiedRoomCodeMatches.has(m.id)) {
                                 triggerRoomCodeLiveNotification(m);
@@ -3296,86 +3427,15 @@
             });
         }
 
-        function seedDefaultCategories() {
-            const initial = {
-                ludo: { name: "Ludo King (লুডো কিং)", icon: "https://cdn-icons-png.flaticon.com/512/806/806131.png", subtitle: "১v১, ১v২ ও ১v৩ লাইভ চ্যালেঞ্জ", hidden: false, tag: "HOT", color: "blue" },
-                snake: { name: "Snake King (সাপ লুডু)", icon: "https://cdn-icons-png.flaticon.com/512/2865/2865488.png", subtitle: "ক্লাসিক স্নেক অ্যান্ড ল্যাডার টুর্নামেন্ট", hidden: false, tag: "NEW", color: "teal" },
-                freefire: { name: "Free Fire (ফ্রি ফায়ার)", icon: "https://cdn-icons-png.flaticon.com/512/808/808439.png", subtitle: "CS & Battle Royale Matches", hidden: false, tag: "PLAY NOW", color: "orange" },
-                carrom: { name: "Carrom Board (ক্যারাম বোর্ড)", icon: "https://cdn-icons-png.flaticon.com/512/3655/3655613.png", subtitle: "Classic Board Challenge", hidden: false, tag: "PLAY NOW", color: "emerald" },
-                bead16: { name: "Bead 16 (১৬ গুটি)", icon: "https://cdn-icons-png.flaticon.com/512/3076/3076891.png", subtitle: "ঐতিহ্যবাহী ১৬ গুটি চ্যালেঞ্জ", hidden: false, tag: "PLAY NOW", color: "purple" }
-            };
-            gameSupportDb.ref('game_categories').set(initial);
-        }
-
         function seedDefaultMatches() {
             const defaults = [
                 { matchNo: "#1001", gameType: "ludo", mode: "1v1", max: 2, fee: 50, prize: 90, isSpecial: true, isTimed: false, scheduleTime: "", roomCode: "", status: "waiting", createdAt: Date.now() },
                 { matchNo: "#1002", gameType: "ludo", mode: "1v3", max: 4, fee: 30, prize: 105, isSpecial: false, isTimed: true, scheduleTime: "09:30 PM", roomCode: "", status: "waiting", createdAt: Date.now() },
                 { matchNo: "#1003", gameType: "snake", mode: "1v1", max: 2, fee: 40, prize: 72, isSpecial: false, isTimed: false, scheduleTime: "", roomCode: "", status: "waiting", createdAt: Date.now() },
                 { matchNo: "#1004", gameType: "snake", mode: "1v2", max: 3, fee: 30, prize: 80, isSpecial: true, isTimed: false, scheduleTime: "", roomCode: "", status: "waiting", createdAt: Date.now() },
-                { matchNo: "#2001", gameType: "freefire", mode: "1v1", max: 2, fee: 100, prize: 180, isSpecial: false, isTimed: true, scheduleTime: "10:00 PM", roomCode: "", status: "waiting", createdAt: Date.now() },
-                { matchNo: "#3001", gameType: "carrom", mode: "1v1", max: 2, fee: 40, prize: 70, isSpecial: false, isTimed: false, scheduleTime: "", roomCode: "", status: "waiting", createdAt: Date.now() },
-                { matchNo: "#4001", gameType: "bead16", mode: "1v1", max: 2, fee: 30, prize: 50, isSpecial: false, isTimed: false, scheduleTime: "", roomCode: "", status: "waiting", createdAt: Date.now() }
+                { matchNo: "#2001", gameType: "freefire", mode: "1v1", max: 2, fee: 100, prize: 180, isSpecial: false, isTimed: true, scheduleTime: "10:00 PM", roomCode: "", status: "waiting", createdAt: Date.now() }
             ];
             defaults.forEach(item => gameSupportDb.ref('matches').push(item));
-        }
-
-        function renderGameCategories() {
-            const container = document.getElementById('game-categories-container');
-            if (!container) return;
-
-            let html = '';
-
-            gameCategories.forEach(g => {
-                if (g.hidden === true) return;
-
-                let borderColor = 'border-blue-500/30';
-                let tagBg = 'bg-rose-500 text-white';
-                if (g.color === 'teal') { borderColor = 'border-teal-500/30'; tagBg = 'bg-teal-500 text-slate-950'; }
-                if (g.color === 'orange') { borderColor = 'border-orange-500/30'; tagBg = 'bg-gradient-to-r from-orange-500 to-amber-500 text-white'; }
-                if (g.color === 'emerald') { borderColor = 'border-emerald-500/30'; tagBg = 'bg-emerald-600 text-white'; }
-                if (g.color === 'purple') { borderColor = 'border-purple-500/30'; tagBg = 'bg-purple-600 text-white'; }
-
-                html += `
-                <div onclick="openGameArena('${g.name}', '${g.key}')" class="bg-[#121a2d] rounded-3xl p-4 border ${borderColor} cursor-pointer hover:scale-[1.01] transition relative overflow-hidden shadow-lg">
-                    <div class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full ${tagBg} text-[10px] font-black uppercase tracking-wider shadow">
-                        ${g.tag || 'PLAY'}
-                    </div>
-                    <div class="flex items-center gap-3.5">
-                        <div class="w-14 h-14 rounded-2xl bg-slate-900 border border-white/10 p-1 flex items-center justify-center shadow-md">
-                            <img src="${g.icon}" class="w-full h-full object-cover rounded-xl" alt="${g.name}">
-                        </div>
-                        <div>
-                            <h4 class="text-base font-black text-white flex items-center gap-1.5">
-                                ${g.name}
-                            </h4>
-                            <p class="text-xs text-slate-400 font-bold mt-0.5">${g.subtitle || 'লাইভ টুর্নামেন্ট চ্যালেঞ্জ'}</p>
-                            <span class="text-[11px] text-emerald-400 font-extrabold">(ম্যাচগুলো লাইভ রয়েছে)</span>
-                        </div>
-                    </div>
-                </div>`;
-            });
-
-            html += `
-            <div onclick="showComingSoonAlert('লাইভ অটো লুডু')" class="bg-[#121a2d] rounded-3xl p-4 border border-cyan-500/20 cursor-pointer hover:border-cyan-500/50 transition relative overflow-hidden shadow-lg">
-                <div class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-cyan-500 text-slate-950 text-[10px] font-black uppercase tracking-wider flex items-center gap-1 shadow">
-                    <i class="fas fa-bolt"></i> AUTO
-                </div>
-                <div class="flex items-center gap-3.5">
-                    <div class="w-14 h-14 rounded-2xl bg-slate-900 border border-white/10 p-1 flex items-center justify-center shadow-md">
-                        <img src="https://cdn-icons-png.flaticon.com/512/806/806131.png" class="w-full h-full object-cover rounded-xl" alt="Live Ludo">
-                    </div>
-                    <div>
-                        <h4 class="text-base font-black text-rose-400 flex items-center gap-1.5">
-                            <i class="fas fa-robot text-rose-400 text-sm"></i> লাইভ অটো লুডু
-                        </h4>
-                        <p class="text-xs text-slate-400 font-bold mt-0.5">ইনস্ট্যান্ট স্বয়ংক্রিয় রুম কোড</p>
-                        <span class="text-[11px] text-cyan-400 font-extrabold">(খুব শীঘ্রই চালু হবে)</span>
-                    </div>
-                </div>
-            </div>`;
-
-            container.innerHTML = html;
         }
 
         function triggerRoomCodeLiveNotification(match) {
@@ -3589,12 +3649,8 @@
         }
 
         function getGameIcon(type) {
-            const cat = gameCategories.find(c => c.key === type);
-            if (cat && cat.icon) return cat.icon;
             switch(type) {
                 case 'freefire': return 'https://cdn-icons-png.flaticon.com/512/808/808439.png';
-                case 'carrom': return 'https://cdn-icons-png.flaticon.com/512/3655/3655613.png';
-                case 'bead16': return 'https://cdn-icons-png.flaticon.com/512/3076/3076891.png';
                 case 'snake': return 'https://cdn-icons-png.flaticon.com/512/2865/2865488.png';
                 default: return 'https://cdn-icons-png.flaticon.com/512/806/806131.png';
             }
@@ -3667,7 +3723,6 @@
             const pSnap = await gameSupportDb.ref(`matches/${m.id}/players`).once('value');
             const currentPlayers = pSnap.val() ? Object.values(pSnap.val()) : [playerPayload];
 
-            // User History in User DB
             await database.ref(`users/${activeUser.id}/history/${m.id}`).set({
                 type: "MATCH",
                 matchNo: m.matchNo,
@@ -3775,7 +3830,7 @@
             });
         }
 
-        // ================= MULTI-TAB HISTORY ENGINE (RESTORED VS LAYOUT) =================
+        // ================= MULTI-TAB HISTORY ENGINE =================
         function switchHistoryTab(tab, btnEl) {
             currentHistoryTab = tab;
             document.querySelectorAll('.history-nav-tab').forEach(b => b.classList.remove('active'));
@@ -3892,7 +3947,7 @@
                                 <span class="text-base font-black italic text-rose-500 tracking-wider">VS</span>
                             </div>
 
-                            <div class="flex flex-col items-center gap-1">
+<div class="flex flex-col items-center gap-1">
                                 <div class="w-12 h-12 rounded-full border-2 border-rose-500 p-0.5 overflow-hidden shadow-lg bg-slate-800">
                                     <img src="${p2Photo}" class="w-full h-full object-cover rounded-full" alt="Opponent">
                                 </div>
@@ -3998,8 +4053,21 @@
             }).join('');
         }
 
-        // ================= 7-DAY LEADERBOARD COUNTDOWN & PRIZE ENGINE =================
-        function initLeaderboardCountdown() {
+        // ================= LEADERBOARD ENGINE & TIMERS (COIN POINTS RANKING & RESET) =================
+        function initLeaderboardEngine() {
+            // Listen to settings for round start, duration & exchange lock hours
+            database.ref('settings/leaderboard_round_duration_hours').on('value', snap => {
+                if (snap.exists() && snap.val()) {
+                    leaderboardRoundDurationHours = parseInt(snap.val(), 10) || 168;
+                }
+            });
+
+            database.ref('settings/exchange_lock_hours').on('value', snap => {
+                if (snap.exists() && snap.val() !== null) {
+                    exchangeLockHoursBeforeReset = parseInt(snap.val(), 10) || 10;
+                }
+            });
+
             database.ref('settings/leaderboard_round_start').on('value', snap => {
                 if (snap.exists() && snap.val()) {
                     currentLeaderboardRoundStart = snap.val();
@@ -4007,54 +4075,113 @@
                     currentLeaderboardRoundStart = Date.now();
                     database.ref('settings/leaderboard_round_start').set(currentLeaderboardRoundStart);
                 }
-                startCountdownTimer();
+                startLeaderboardCountdownLoop();
+            });
+
+            // Realtime user points update on leaderboard
+            database.ref('users').on('value', () => {
+                loadLeaderboard();
             });
         }
 
-        function startCountdownTimer() {
+        function startLeaderboardCountdownLoop() {
             if (leaderboardCountdownTimer) clearInterval(leaderboardCountdownTimer);
-            const duration = 7 * 24 * 60 * 60 * 1000; // 7 days
 
             leaderboardCountdownTimer = setInterval(() => {
                 const now = Date.now();
+                const totalDurationMs = (leaderboardRoundDurationHours || 168) * 60 * 60 * 1000;
                 const elapsed = now - currentLeaderboardRoundStart;
-                const remaining = duration - elapsed;
+                const remaining = totalDurationMs - elapsed;
 
+                const lockThresholdMs = (exchangeLockHoursBeforeReset || 10) * 60 * 60 * 1000;
+
+                // Check if exchange should be locked
+                const lockWarningBox = document.getElementById('exchange-lock-warning');
+                const lockWarningText = document.getElementById('exchange-lock-warning-text');
+                const btnExchange = document.getElementById('btn-exchange-points');
+
+                if (remaining <= lockThresholdMs && remaining > 0) {
+                    isExchangeLockedNow = true;
+                    if (lockWarningBox) lockWarningBox.classList.remove('hidden');
+                    if (lockWarningText) {
+                        const lockHrsRemaining = Math.ceil(remaining / (1000 * 60 * 60));
+                        lockWarningText.textContent = `লিডারবোর্ড রিসেটের আর মাত্র ${lockHrsRemaining} ঘণ্টা বাকি থাকায় কয়েন এক্সচেঞ্জ সাময়িক বন্ধ রয়েছে!`;
+                    }
+                    if (btnExchange) {
+                        btnExchange.classList.add('opacity-50', 'cursor-not-allowed');
+                    }
+                } else {
+                    isExchangeLockedNow = false;
+                    if (lockWarningBox) lockWarningBox.classList.add('hidden');
+                    if (btnExchange) {
+                        btnExchange.classList.remove('opacity-50', 'cursor-not-allowed');
+                    }
+                }
+
+                // If cycle is complete, reset points & restart round
                 if (remaining <= 0) {
-                    currentLeaderboardRoundStart = Date.now();
-                    database.ref('settings/leaderboard_round_start').set(currentLeaderboardRoundStart);
+                    handleLeaderboardRoundReset();
                 } else {
                     const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
                     const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
                     const mins = Math.floor((remaining / (1000 * 60)) % 60);
                     const secs = Math.floor((remaining / 1000) % 60);
                     const pad = n => String(n).padStart(2, '0');
-                    document.getElementById('leaderboard-countdown').textContent = `${days} দিন ${pad(hours)}:${pad(mins)}:${pad(secs)}`;
+                    const countdownEl = document.getElementById('leaderboard-countdown');
+                    if (countdownEl) {
+                        countdownEl.textContent = `${days} দিন ${pad(hours)}:${pad(mins)}:${pad(secs)}`;
+                    }
                 }
             }, 1000);
+        }
+
+        async function handleLeaderboardRoundReset() {
+            clearInterval(leaderboardCountdownTimer);
+            const newStart = Date.now();
+            await database.ref('settings/leaderboard_round_start').set(newStart);
+            currentLeaderboardRoundStart = newStart;
+
+            // Reset all users' coinPoints to 0 on database
+            const snap = await database.ref('users').once('value');
+            if (snap.exists()) {
+                const updates = {};
+                snap.forEach(c => {
+                    updates[`users/${c.key}/coinPoints`] = 0;
+                    updates[`users/${c.key}/completedTasks`] = []; // টাস্কও পুনরায় চালু করতে
+                });
+                await database.ref().update(updates);
+            }
+
+            activeUser.coinPoints = 0;
+            activeUser.completedTasks = [];
+            updateUserInterface();
+            loadLeaderboard();
+            startLeaderboardCountdownLoop();
+            showToast("🎉 লিডারবোর্ড নতুন রাউন্ডে প্রবেশ করেছে এবং পয়েন্ট রিসেট হয়েছে!", "info");
         }
 
         function loadLeaderboard() {
             const container = document.getElementById('leaderboard-list-container');
             if (!container) return;
 
-            database.ref('users').limitToLast(20).once('value', snapshot => {
+            database.ref('users').once('value', snapshot => {
                 let leaders = [];
                 if (snapshot.exists()) {
                     snapshot.forEach(c => {
-                        const u = c.val();
+                        const u = c.val() || {};
                         const p = u.profile || {};
-                        const historyCount = u.history ? Object.keys(u.history).length : 0;
+                        const pts = parseInt(u.coinPoints, 10) || 0;
                         leaders.push({
                             uid: c.key,
-                            name: p.name || `User_${c.key.slice(-4)}`,
+                            name: p.name || `Player_${c.key.slice(-4)}`,
                             photo: p.photo || "https://i.postimg.cc/L4YZZKsv/IMG-20260919-214336-790.jpg",
-                            matchesPlayed: historyCount
+                            coinPoints: pts
                         });
                     });
                 }
 
-                leaders.sort((a, b) => b.matchesPlayed - a.matchesPlayed);
+                // Sorting based on Coin Points (🪙)
+                leaders.sort((a, b) => b.coinPoints - a.coinPoints);
 
                 if (leaders.length === 0) {
                     container.innerHTML = `<div class="text-center text-slate-500 text-xs py-8">কোনো রেকর্ড নেই</div>`;
@@ -4091,7 +4218,9 @@
                             </div>
                             <div>
                                 <h4 class="text-xs font-black text-white">${lead.name}</h4>
-                                <span class="text-[10px] text-slate-400">ম্যাচ খেলেছেন: <b class="text-amber-400">${lead.matchesPlayed} টি</b></span>
+                                <span class="text-[11px] text-yellow-300 font-bold flex items-center gap-1 font-mono">
+                                    <span>🪙</span> ${lead.coinPoints} কয়েন
+                                </span>
                             </div>
                         </div>
                         ${bonusPill}
@@ -4100,7 +4229,7 @@
             });
         }
 
-        // ================= DAILY CHECK-IN =================
+        // ================= DAILY CHECK-IN (POINTS BASED) =================
         function handleDailyCheckin() {
             const now = new Date();
             const bstOffset = 6 * 60 * 60 * 1000;
@@ -4112,12 +4241,13 @@
                 return showToast("আজকের বোনাস নেওয়া হয়েছে! পরবর্তী ক্লেইম রাত ০১:০০ টায়।", "info");
             }
 
-            activeUser.depositBalance += 0.20;
+            activeUser.coinPoints = (activeUser.coinPoints || 0) + 10; // +10 Coins
             activeUser.lastDailyCheckin = Date.now();
             syncBalancesToFirebase();
             database.ref(`users/${activeUser.id}/lastDailyCheckin`).set(activeUser.lastDailyCheckin);
+            loadLeaderboard();
 
-            showToast("৳০.২০ দৈনিক বোনাস সফলভাবে গেমিং ব্যালেন্সে যুক্ত হয়েছে!", "success");
+            showToast("🎉 +১০ 🪙 দৈনিক পয়েন্ট বোনাস সফলভাবে যুক্ত হয়েছে!", "success");
         }
 
         function renderDailyCheckinState() {
@@ -4137,10 +4267,10 @@
                 btn.textContent = "Claimed";
                 if (sub) sub.textContent = "আজকের বোনাস ক্লেইম সম্পন্ন";
             } else {
-btn.disabled = false;
+                btn.disabled = false;
                 btn.className = "px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-xl font-extrabold text-xs shadow-sm active:scale-95 transition";
-                btn.textContent = "+৳০.২০ Claim";
-                if (sub) sub.textContent = "প্রতিদিন ফ্রিতে ব্যালেন্স নিন";
+                btn.textContent = "+১০ 🪙 Claim";
+                if (sub) sub.textContent = "প্রতিদিন ফ্রিতে কয়েন পয়েন্ট নিন";
             }
         }
 
