@@ -563,9 +563,10 @@
             transition: all 0.25s ease;
         }
         .task-card-item.completed {
-            background: #0d1527;
-            border-color: rgba(255, 255, 255, 0.05);
-            opacity: 0.85;
+            background: #090e1a;
+            border-color: rgba(255, 255, 255, 0.04);
+            opacity: 0.65;
+            filter: grayscale(40%);
         }
 
         .withdraw-card-gradient {
@@ -627,6 +628,31 @@
             color: #ffffff;
             border-color: #60a5fa;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+        }
+
+        /* Free Fire Mode Selector Pill */
+        .ff-subtab-pill {
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            white-space: nowrap;
+        }
+        .ff-subtab-pill.active {
+            background: linear-gradient(135deg, #ea580c, #f97316);
+            color: #ffffff;
+            border-color: #fdba74;
+            box-shadow: 0 0 12px rgba(234, 88, 12, 0.4);
+        }
+        .ff-subtab-pill.disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            border-style: dashed;
         }
     </style>
 </head>
@@ -780,7 +806,7 @@
                             <h4 class="text-base font-black text-white flex items-center gap-1.5">
                                 Ludo King (লুডো কিং)
                             </h4>
-                            <p class="text-xs text-slate-400 font-bold mt-0.5">১v১, ১v২ ও ১v৩ লাইভ চ্যালেঞ্জ</p>
+                            <p class="text-xs text-slate-400 font-bold mt-0.5">১v১, ১v২ ও ১v৩ লাইভ টুর্নামেন্ট</p>
                             <span class="text-[11px] text-emerald-400 font-extrabold">(ম্যাচগুলো ফায়ারবেসে লাইভ রয়েছে)</span>
                         </div>
                     </div>
@@ -806,7 +832,7 @@
 
                 <div onclick="openGameArena('Free Fire (ফ্রি ফায়ার)', 'freefire')" class="bg-[#121a2d] rounded-3xl p-4 border border-orange-500/30 cursor-pointer hover:scale-[1.01] transition relative overflow-hidden shadow-lg">
                     <div class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-white text-[10px] font-black uppercase tracking-wider shadow">
-                        PLAY NOW
+                        LON UP / CS
                     </div>
                     <div class="flex items-center gap-3.5">
                         <div class="w-14 h-14 rounded-2xl bg-slate-900 border border-white/10 p-1 flex items-center justify-center shadow-md">
@@ -816,7 +842,7 @@
                             <h4 class="text-base font-black text-white flex items-center gap-1.5">
                                 Free Fire (ফ্রি ফায়ার)
                             </h4>
-                            <p class="text-xs text-slate-400 font-bold mt-0.5">CS & Battle Royale Matches</p>
+                            <p class="text-xs text-slate-400 font-bold mt-0.5">LON UP 1v1, 2v2 & CSS 4v4 Matches</p>
                             <span class="text-[11px] text-emerald-400 font-extrabold">(ম্যাচগুলো ফায়ারবেসে লাইভ রয়েছে)</span>
                         </div>
                     </div>
@@ -839,6 +865,15 @@
                 <button onclick="refreshMatchesListUI(this)" class="w-8 h-8 rounded-2xl bg-blue-600/30 text-blue-400 border border-blue-400/30 flex items-center justify-center absolute right-3 top-3.5 active:scale-95 hover:bg-blue-600/50 transition shadow" title="ম্যাচ রিফ্রেশ করুন">
                     <i class="fas fa-rotate text-xs"></i>
                 </button>
+            </div>
+
+            <!-- FREE FIRE SPECIAL SUBMODES (DISPLAYED ONLY WHEN FREE FIRE IS SELECTED) -->
+            <div id="ff-submodes-container" class="hidden flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+                <button onclick="filterFreeFireSubmode('all', this)" class="ff-subtab-pill active">সকল FF ম্যাচ</button>
+                <button onclick="filterFreeFireSubmode('lonup_1v1', this)" class="ff-subtab-pill">LON UP 1v1</button>
+                <button onclick="filterFreeFireSubmode('lonup_2v2', this)" class="ff-subtab-pill">LON UP 2v2</button>
+                <button onclick="filterFreeFireSubmode('css_4v4', this)" class="ff-subtab-pill">CSS 4v4</button>
+                <button onclick="showToast('BR 1v48 ম্যাচ বর্তমানে বন্ধ রয়েছে!', 'info')" class="ff-subtab-pill disabled" title="আপাতত বন্ধ">BR 1v48 (বন্ধ)</button>
             </div>
 
             <div class="grid grid-cols-2 gap-2">
@@ -1035,7 +1070,7 @@
                 </button>
             </div>
 
-            <!-- 1. MATCH HISTORY -->
+            <!-- 1. MATCH HISTORY (BEAUTIFUL ENHANCED CARDS) -->
             <div id="history-container-matches" class="space-y-3 min-h-[300px]"></div>
 
             <!-- 2. DEPOSIT HISTORY -->
@@ -1156,7 +1191,7 @@
             </div>
 
             <div class="bg-[#121a2d] p-5 rounded-3xl border border-white/10 space-y-4">
-                <p class="text-xs text-sky-400 bg-sky-950/40 p-2.5 rounded-xl font-semibold border border-sky-500/20">
+                <p class="text-xs text-sky-400 bg-sky-950/40 p-2.5 rounded-xl font-semibold border border-sky-500/20" id="transfer-info-banner">
                     প্রতিটি ট্রান্সফারে ২% সার্ভিস চার্জ প্রযোজ্য। সর্বনিম্ন ৳১০ পাঠাতে পারবেন।
                 </p>
                 <div>
@@ -1401,7 +1436,7 @@
                     <div>
                         <div class="flex justify-between items-center mb-1.5">
                             <label for="deposit-amount-input" class="text-xs font-black text-slate-300">টাকার পরিমাণ (BDT)</label>
-                            <span class="text-[10.5px] font-bold text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded-md border border-blue-500/20">মিনিমাম: ৳১০</span>
+                            <span class="text-[10.5px] font-bold text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded-md border border-blue-500/20" id="deposit-min-label">মিনিমাম: ৳১০</span>
                         </div>
                         <div class="relative">
                             <input id="deposit-amount-input" type="number" step="1" value="50" min="10" placeholder="50" oninput="handleAutoAmountInput()" class="w-full p-3.5 pl-10 rounded-2xl bg-[#090f1d] border border-white/10 text-2xl font-black text-white text-center font-mono focus:border-blue-500 outline-none">
@@ -1789,31 +1824,64 @@
         
         let TG_BOT_TOKEN = "7726597793:AAGd680r3WbI3oT8z_0-mB_5Hq1zY2W0kG0";
 
-        // ================= CONFIGURATION 1 (USER ACCOUNT, WALLET, DEPOSIT, WITHDRAW, COMPLETE HISTORIES) =================
+        // ================= CONFIGURATION 1 (USER ACCOUNT, WALLET, DEPOSIT, WITHDRAW, SETTINGS & HISTORIES) =================
         const userFirebaseConfig = {
-            apiKey: "AIzaSyATMvfJ1-hruCYCq7bJWghYBf-rJd7fuyU",
-            authDomain: "zoro-turn-1.firebaseapp.com",
-            databaseURL: "https://zoro-turn-1-default-rtdb.firebaseio.com",
-            projectId: "zoro-turn-1",
-            storageBucket: "zoro-turn-1.firebasestorage.app",
-            messagingSenderId: "923784005024",
-            appId: "1:923784005024:web:2758308cd10b2b492110c5"
+            apiKey: "AIzaSyDBfSF7px81par2b00_rP-VTAJX79X299k",
+            authDomain: "london-1-d344e.firebaseapp.com",
+            databaseURL: "https://london-1-d344e-default-rtdb.firebaseio.com",
+            projectId: "london-1-d344e",
+            storageBucket: "london-1-d344e.firebasestorage.app",
+            messagingSenderId: "616713539456",
+            appId: "1:616713539456:web:d3e9762ee628622144bb65"
         };
         const userApp = firebase.initializeApp(userFirebaseConfig, "userAppInstance");
         const database = userApp.database();
 
-        // ================= CONFIGURATION 2 (MATCHES, LIVE SUPPORT, TASKS) =================
+        // ================= CONFIGURATION 2 (MATCHES, LIVE SUPPORT, DYNAMIC TASKS, SUBMISSIONS) =================
         const gameSupportFirebaseConfig = {
-            apiKey: "AIzaSyDUKTsCPLqc64J8PhNubphnhIAoQuqkg8I",
-            authDomain: "zoro-turn-2.firebaseapp.com",
-            databaseURL: "https://zoro-turn-2-default-rtdb.firebaseio.com",
-            projectId: "zoro-turn-2",
-            storageBucket: "zoro-turn-2.firebasestorage.app",
-            messagingSenderId: "674800601201",
-            appId: "1:674800601201:web:d8678ba7c378942c81f3d0"
+            apiKey: "AIzaSyCtvItFRR7w4ZzpYX3HIeQl2ULWA8MR4cg",
+            authDomain: "london-2-b6f18.firebaseapp.com",
+            databaseURL: "https://london-2-b6f18-default-rtdb.firebaseio.com",
+            projectId: "london-2-b6f18",
+            storageBucket: "london-2-b6f18.firebasestorage.app",
+            messagingSenderId: "571663138554",
+            appId: "1:571663138554:web:909e22d632963be2141343"
         };
         const gameSupportApp = firebase.initializeApp(gameSupportFirebaseConfig, "gameSupportAppInstance");
         const gameSupportDb = gameSupportApp.database();
+
+        // ================= DYNAMIC FIREBASE SYSTEM CONFIGURATION =================
+        let dynamicSettings = {
+            minDeposit: 10,
+            minWithdraw: 100,
+            maxWithdraw: 20000,
+            withdrawFee: 10,
+            minTransfer: 10,
+            transferFeePercent: 2,
+            messages: {
+                match_joined_title: "ম্যাচে সফল জয়েন!",
+                match_joined_msg: "আপনি সফলভাবে {matchNo} ম্যাচে জয়েন করেছেন।",
+                match_win_title: "🎉 অভিনন্দন! আপনি বিজয়ী!",
+                match_win_msg: "ম্যাচ {matchNo}-এ বিজয়ী হয়ে আপনি ৳{prize} জিতেছেন!",
+                match_refund_title: "ম্যাচ রিফান্ড সফল",
+                match_refund_msg: "ম্যাচ {matchNo} থেকে ৳{fee} আপনার মেইন ব্যালেন্সে ফেরত দেওয়া হয়েছে।",
+                withdraw_request_title: "উত্তোলন অনুরোধ গৃহীত",
+                withdraw_request_msg: "আপনার ৳{amount} ({method}) উত্তোলনের অনুরোধ সফল হয়েছে।",
+                deposit_success_title: "ডিপোজিট সফল",
+                deposit_success_msg: "আপনার গেমিং ওয়ালেটে ৳{amount} যোগ করা হয়েছে।"
+            }
+        };
+
+        function getDynamicMsg(key, defaultTitle, defaultMsg, replacements = {}) {
+            let title = dynamicSettings.messages?.[`${key}_title`] || defaultTitle;
+            let msg = dynamicSettings.messages?.[`${key}_msg`] || defaultMsg;
+            Object.keys(replacements).forEach(k => {
+                const reg = new RegExp(`\\{${k}\\}`, 'g');
+                msg = msg.replace(reg, replacements[k]);
+                title = title.replace(reg, replacements[k]);
+            });
+            return { title, message: msg };
+        }
 
         let activeUser = {
             id: "6954647230",
@@ -1833,6 +1901,7 @@
         let currentOnboardStep = 1;
         const taskActiveTimers = {};
         let selectedGameCategory = 'ludo';
+        let currentFreeFireSubmode = 'all';
         let realtimeMatches = [];
         let pendingJoinMatchId = null;
         let currentActiveFilter = 'all';
@@ -1957,15 +2026,28 @@
                 activeUser.hasFirstDepositBonusGiven = snap.val() === true;
             });
 
-            database.ref('settings/main_notice').on('value', snap => {
-                if (snap.exists() && snap.val()) {
-                    document.getElementById('main-notice-marquee').textContent = snap.val();
-                }
-            });
+            // LISTEN TO EDITABLE SETTINGS & MESSAGES IN FIREBASE 1
+            database.ref('settings').on('value', snap => {
+                if (snap.exists()) {
+                    const st = snap.val();
+                    if (st.min_deposit !== undefined) dynamicSettings.minDeposit = parseFloat(st.min_deposit);
+                    if (st.min_withdraw !== undefined) dynamicSettings.minWithdraw = parseFloat(st.min_withdraw);
+                    if (st.max_withdraw !== undefined) dynamicSettings.maxWithdraw = parseFloat(st.max_withdraw);
+                    if (st.withdraw_fee !== undefined) dynamicSettings.withdrawFee = parseFloat(st.withdraw_fee);
+                    if (st.min_transfer !== undefined) dynamicSettings.minTransfer = parseFloat(st.min_transfer);
+                    if (st.transfer_fee_percent !== undefined) dynamicSettings.transferFeePercent = parseFloat(st.transfer_fee_percent);
+                    if (st.main_notice) document.getElementById('main-notice-marquee').textContent = st.main_notice;
+                    if (st.tg_bot_token) TG_BOT_TOKEN = st.tg_bot_token;
+                    if (st.messages) dynamicSettings.messages = { ...dynamicSettings.messages, ...st.messages };
 
-            database.ref('settings/tg_bot_token').on('value', snap => {
-                if (snap.exists() && snap.val()) {
-                    TG_BOT_TOKEN = snap.val();
+                    // Update UI labels from dynamic settings
+                    const depMinLbl = document.getElementById('deposit-min-label');
+                    if (depMinLbl) depMinLbl.textContent = `মিনিমাম: ৳${dynamicSettings.minDeposit}`;
+
+                    const transferBanner = document.getElementById('transfer-info-banner');
+                    if (transferBanner) transferBanner.textContent = `প্রতিটি ট্রান্সফারে ${dynamicSettings.transferFeePercent}% সার্ভিস চার্জ প্রযোজ্য। সর্বনিম্ন ৳${dynamicSettings.minTransfer} পাঠাতে পারবেন।`;
+
+                    loadWithdrawPageUI();
                 }
             });
 
@@ -2188,6 +2270,7 @@
                         const m = c.val();
                         m.id = c.key;
                         m.gameType = m.gameType || 'ludo';
+                        m.subMode = m.subMode || m.mode || '1v1';
                         m.matchNo = m.matchNo || `#${m.gameType.toUpperCase()}-${1000 + indexCount}`;
                         m.mode = m.mode || (m.max === 4 ? '1v3' : m.max === 3 ? '1v2' : '1v1');
                         m.max = m.max || (m.mode === '1v3' ? 4 : m.mode === '1v2' ? 3 : 2);
@@ -2274,7 +2357,7 @@
             `).join('');
         }
 
-        // --- 3. DYNAMIC TASKS LOGIC ---
+        // --- 3. DYNAMIC TASKS LOGIC (SYNCED WITH FIREBASE 2) ---
         let remoteTasks = [];
         function listenDynamicTasks() {
             gameSupportDb.ref('tasks').on('value', snap => {
@@ -2339,7 +2422,7 @@
             if (!container) return;
 
             if (!remoteTasks.length) {
-                container.innerHTML = `<div class="text-center py-6 text-xs text-slate-500">কোনো টাস্ক সক্রিয় নেই।</div>`;
+                container.innerHTML = `<div class="text-center py-6 text-xs text-slate-500">কোনো টাস্ক সক্রিয় নেই। ফায়ারবেস থেকে টাস্ক যোগ করুন।</div>`;
                 return;
             }
 
@@ -2348,23 +2431,11 @@
             const matchesWonToday = pureMatchHistory.filter(m => m.status === 'WIN').length;
             const referEarn = parseFloat(document.getElementById('ref-stat-earn')?.textContent?.replace('৳', '') || 0);
 
-            // সমস্ত নন-গেমপ্লে টাস্ক শেষ হয়েছে কিনা যাচাই
-            const nonGameplayTasks = remoteTasks.filter(t => !t.type.startsWith('gameplay_'));
-            const allNonGameplayDone = nonGameplayTasks.length > 0 && nonGameplayTasks.every(t => completed.includes(t.id));
-
-            // সুনির্দিষ্ট সর্টিং:
-            // ১. ইনকমপ্লিট টাস্ক উপরে থাকবে, কমপ্লিট টাস্ক সবার নিচে যাবে।
-            // ২. ইনকমপ্লিট থাকা অবস্থায় গেমপ্লে টাস্ক নিচে থাকবে (যদি না অন্যান্য সব টাস্ক সম্পন্ন হয়)।
+            // শর্তানুযায়ী: সম্পন্ন হওয়া টাস্কগুলো স্বয়ংক্রিয়ভাবে তালিকার নিচে চলে যাবে এবং ডিসাবল হবে
             const sortedTasks = [...remoteTasks].sort((a, b) => {
                 const aDone = completed.includes(a.id);
                 const bDone = completed.includes(b.id);
                 if (aDone !== bDone) return aDone ? 1 : -1;
-
-                if (!allNonGameplayDone) {
-                    const aIsGameplay = a.type.startsWith('gameplay_');
-                    const bIsGameplay = b.type.startsWith('gameplay_');
-                    if (aIsGameplay !== bIsGameplay) return aIsGameplay ? 1 : -1;
-                }
                 return 0;
             });
 
@@ -2434,9 +2505,9 @@
 
                     <div id="task-action-${task.id}">
                         ${isDone ? `
-                            <div class="w-full py-2.5 px-3 bg-[#090f1d] text-slate-400 rounded-xl font-bold text-xs text-center border border-white/5">
-                                এই টাস্কটি সম্পন্ন হয়েছে
-                            </div>
+                            <button disabled class="w-full py-2.5 px-3 bg-[#0a101d] text-slate-500 rounded-xl font-bold text-xs text-center border border-white/5 cursor-not-allowed">
+                                <i class="fas fa-check-circle mr-1 text-emerald-500"></i> এই টাস্কটি সম্পন্ন ও নিষ্ক্রিয় করা হয়েছে
+                            </button>
                         ` : (task.type.startsWith('gameplay_')) ? `
                             ${isGameplayReadyToClaim ? `
                                 <button onclick="claimTaskReward('${task.id}', ${pts})" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-md transition active:scale-98 animate-pulse">
@@ -2885,6 +2956,15 @@
                     hasAwardedLocally: true
                 });
 
+                const winNotice = getDynamicMsg('match_win', '🎉 অভিনন্দন! আপনি বিজয়ী!', 'ম্যাচ {matchNo}-এ বিজয়ী হয়ে আপনি ৳{prize} জিতেছেন!', { matchNo: matchData.matchNo, prize: prize });
+                await database.ref(`users/${winnerUid}/notifications`).push({
+                    title: winNotice.title,
+                    message: winNotice.message,
+                    time: "Just now",
+                    timestamp: Date.now(),
+                    isRead: false
+                });
+
                 // রেফারেল উইনিং বোনাস: ইনভাইটারকে ২ কয়েন পয়েন্ট প্রদান
                 const winnerSnap = await database.ref(`users/${winnerUid}`).once('value');
                 const winnerData = winnerSnap.val() || {};
@@ -3312,7 +3392,6 @@
 
             const banner = document.getElementById('user-status-banner');
             const inputBar = document.getElementById('support-input-bar');
-            const now = Date.now();
 
             if (activeTargetUserMeta.isBanned) {
                 banner.style.display = 'block';
@@ -3427,6 +3506,7 @@
                         const m = c.val();
                         m.id = c.key;
                         m.gameType = m.gameType || 'ludo';
+                        m.subMode = m.subMode || m.mode || '1v1';
                         m.matchNo = m.matchNo || `#${m.gameType.toUpperCase()}-${1000 + indexCount}`;
                         m.mode = m.mode || (m.max === 4 ? '1v3' : m.max === 3 ? '1v2' : '1v1');
                         m.max = m.max || (m.mode === '1v3' ? 4 : m.mode === '1v2' ? 3 : 2);
@@ -3462,9 +3542,29 @@
 
         function openGameArena(name, key) {
             selectedGameCategory = key;
+            currentFreeFireSubmode = 'all';
             document.getElementById('arena-header-title').textContent = name;
             currentActiveFilter = 'all';
+
+            const ffSubContainer = document.getElementById('ff-submodes-container');
+            if (key === 'freefire') {
+                ffSubContainer.classList.remove('hidden');
+            } else {
+                ffSubContainer.classList.add('hidden');
+            }
+
             navigateTo('matches-page');
+            renderMatches();
+        }
+
+        function filterFreeFireSubmode(sub, btnEl) {
+            if (sub === 'br_1v48') {
+                showToast("BR 1v48 ম্যাচ বর্তমানে বন্ধ রয়েছে!", "info");
+                return;
+            }
+            document.querySelectorAll('.ff-subtab-pill').forEach(p => p.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+            currentFreeFireSubmode = sub;
             renderMatches();
         }
 
@@ -3479,7 +3579,19 @@
             const container = document.getElementById('tournament-matches-container');
             if (!container) return;
 
-            const categoryMatches = realtimeMatches.filter(m => (m.gameType || 'ludo') === selectedGameCategory);
+            let categoryMatches = realtimeMatches.filter(m => (m.gameType || 'ludo') === selectedGameCategory);
+
+            // Free Fire Sub-mode filtering
+            if (selectedGameCategory === 'freefire' && currentFreeFireSubmode !== 'all') {
+                categoryMatches = categoryMatches.filter(m => {
+                    const sm = (m.subMode || m.mode || '').toLowerCase();
+                    if (currentFreeFireSubmode === 'lonup_1v1') return sm.includes('lonup') && sm.includes('1v1');
+                    if (currentFreeFireSubmode === 'lonup_2v2') return sm.includes('lonup') && sm.includes('2v2');
+                    if (currentFreeFireSubmode === 'css_4v4') return sm.includes('cs') || sm.includes('css');
+                    return true;
+                });
+            }
+
             const joinedMatches = categoryMatches.filter(m => m.myJoined);
             
             const badgeCountEl = document.getElementById('joined-count-badge');
@@ -3577,14 +3689,7 @@
                                         <i class="fas fa-lock"></i> রুম কোড (অপেক্ষা)
                                     </button>
                                 </div>
-                            ` : `
-                                ${!hasRoomCode ? `
-                                    <div class="grid grid-cols-2 gap-2 pt-1">
-                                        <button disabled class="py-2.5 rounded-xl bg-slate-800 text-slate-500 font-black text-xs flex items-center justify-center gap-1 cursor-not-allowed">
-                                            <i class="fas fa-lock"></i> রিফান্ড লক
-                                        </button>
-                                        <div class="py-2.5 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30 font-extrabold text-xs flex items-center justify-center gap-1.5 animate-pulse">
-                                            <i class="fas fa-spinner fa-spin text-amber-400"></i> এডমিন কোড দিচ্ছেন...
+<i class="fas fa-spinner fa-spin text-amber-400"></i> এডমিন কোড দিচ্ছেন...
                                         </div>
                                     </div>
                                 ` : `
@@ -3640,7 +3745,7 @@
 
             pendingJoinMatchId = id;
             document.getElementById('join-modal-match-title').textContent = `${(m.gameType || 'GAME').toUpperCase()} ${m.matchNo}`;
-            document.getElementById('join-modal-match-mode').textContent = `${m.mode ? m.mode.toUpperCase() : '1V1'} Match Confirmation`;
+            document.getElementById('join-modal-match-mode').textContent = `${m.subMode ? m.subMode.toUpperCase() : (m.mode ? m.mode.toUpperCase() : '1V1')} Match Confirmation`;
             document.getElementById('join-modal-fee').textContent = `৳${m.fee}`;
             document.getElementById('join-modal-prize').textContent = `৳${m.prize}`;
             document.getElementById('join-player-name-input').value = activeUser.name;
@@ -3690,6 +3795,7 @@
                 matchNo: m.matchNo,
                 matchId: m.id,
                 gameType: m.gameType || 'ludo',
+                subMode: m.subMode || m.mode || '1v1',
                 mode: m.mode || '1v1',
                 fee: m.fee,
                 prize: m.prize,
@@ -3699,9 +3805,10 @@
                 timestamp: Date.now()
             });
 
+            const joinNotice = getDynamicMsg('match_joined', 'ম্যাচে সফল জয়েন!', 'আপনি সফলভাবে {matchNo} ম্যাচে জয়েন করেছেন।', { matchNo: m.matchNo });
             await database.ref(`users/${activeUser.id}/notifications`).push({
-                title: "ম্যাচে সফল জয়েন!",
-                message: `আপনি সফলভাবে ${m.matchNo} ম্যাচে জয়েন করেছেন।`,
+                title: joinNotice.title,
+                message: joinNotice.message,
                 time: "Just now",
                 timestamp: Date.now(),
                 isRead: false
@@ -3731,9 +3838,10 @@
                     refundTime: Date.now()
                 });
 
+                const refundNotice = getDynamicMsg('match_refund', 'ম্যাচ রিফান্ড সফল', 'ম্যাচ {matchNo} থেকে ৳{fee} আপনার মেইন ব্যালেন্সে ফেরত দেওয়া হয়েছে।', { matchNo: m.matchNo, fee: m.fee });
                 database.ref(`users/${activeUser.id}/notifications`).push({
-                    title: "ম্যাচ রিফান্ড সফল",
-                    message: `ম্যাচ ${m.matchNo} থেকে ৳${m.fee} আপনার মেইন গেমিং ব্যালেন্সে জমা হয়েছে।`,
+                    title: refundNotice.title,
+                    message: refundNotice.message,
                     time: "Just now",
                     timestamp: Date.now(),
                     isRead: false
@@ -3811,44 +3919,67 @@
                 const isCompleted = item.status === 'WIN' || item.status === 'LOSS' || item.status === 'REFUNDED' || liveMatch?.status === 'COMPLETED';
                 const hasPendingSubmission = item.status === 'PENDING_REVIEW';
 
-                let statusColor = "text-amber-400 bg-amber-500/10 border-amber-500/30";
-                let statusText = item.status;
+                let statusBadge = '';
+                let cardBorderClass = 'border-white/10';
 
                 if (item.status === 'WIN') {
-                    statusColor = "text-emerald-400 bg-emerald-500/10 border-emerald-500/30";
-                    statusText = "🏆 WINNER";
+                    cardBorderClass = 'border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.15)]';
+                    statusBadge = `<span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 text-[10px] font-black tracking-wider flex items-center gap-1"><i class="fas fa-trophy text-amber-300"></i> WINNER</span>`;
                 } else if (item.status === 'LOSS') {
-                    statusColor = "text-rose-400 bg-rose-500/10 border-rose-500/30";
-                    statusText = "LOST";
+                    cardBorderClass = 'border-rose-500/30';
+                    statusBadge = `<span class="px-2.5 py-1 rounded-full bg-rose-500/15 text-rose-300 border border-rose-500/30 text-[10px] font-black tracking-wider flex items-center gap-1"><i class="fas fa-times-circle text-rose-400"></i> LOST</span>`;
                 } else if (item.status === 'REFUNDED') {
-                    statusColor = "text-yellow-400 bg-yellow-500/10 border-yellow-500/30";
-                    statusText = "রিফান্ড";
+                    cardBorderClass = 'border-amber-500/30';
+                    statusBadge = `<span class="px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 text-[10px] font-black tracking-wider flex items-center gap-1"><i class="fas fa-undo text-amber-400"></i> রিফান্ডেড</span>`;
                 } else if (item.status === 'PENDING_REVIEW') {
-                    statusColor = "text-sky-400 bg-sky-500/10 border-sky-500/30";
-                    statusText = "⏳ রিভিউ চলছে";
+                    cardBorderClass = 'border-sky-500/30';
+                    statusBadge = `<span class="px-2.5 py-1 rounded-full bg-sky-500/15 text-sky-300 border border-sky-400/30 text-[10px] font-black tracking-wider flex items-center gap-1"><i class="fas fa-spinner fa-spin text-sky-400"></i> রিভিউ চলছে</span>`;
+                } else {
+                    cardBorderClass = 'border-blue-500/30';
+                    statusBadge = `<span class="px-2.5 py-1 rounded-full bg-blue-500/15 text-blue-300 border border-blue-400/30 text-[10px] font-black tracking-wider flex items-center gap-1"><i class="fas fa-gamepad text-blue-400"></i> রানিং</span>`;
                 }
 
                 return `
-                <div class="bg-[#121a2d] p-4 rounded-3xl border border-white/5 shadow-md space-y-3">
+                <div class="bg-gradient-to-br from-[#111a2e] to-[#0c1424] p-4 rounded-3xl border ${cardBorderClass} shadow-xl space-y-3 relative overflow-hidden transition hover:border-sky-400/50">
                     <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded-lg bg-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-wider">${(item.mode || '1v1').toUpperCase()}</span>
-                            <h4 class="text-xs font-black text-white">${(item.gameType || 'GAME').toUpperCase()} ${item.matchNo}</h4>
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-10 h-10 rounded-2xl bg-[#070c18] border border-white/10 p-1 flex items-center justify-center shadow-inner">
+                                <img src="${getGameIcon(item.gameType)}" class="w-full h-full object-contain" alt="Game">
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-black text-white flex items-center gap-1.5">
+                                    ${(item.gameType || 'GAME').toUpperCase()} ${item.matchNo}
+                                </h4>
+                                <span class="text-[10px] text-cyan-400 font-bold tracking-wider uppercase block mt-0.5">
+                                    ${escapeHTML(item.subMode || item.mode || '1v1')} মোড
+                                </span>
+                            </div>
                         </div>
-                        <span class="px-2.5 py-0.5 rounded-full border text-[10px] font-black ${statusColor}">
-                            ${statusText}
-                        </span>
+                        <div>
+                            ${statusBadge}
+                        </div>
                     </div>
 
-                    <div class="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-white/5">
-                        <span>এন্ট্রি ফি: <b class="text-white">৳${item.fee}</b> • প্রাইজ: <b class="text-emerald-400">৳${item.prize}</b></span>
-                        <span>${item.time}</span>
+                    <div class="grid grid-cols-2 gap-2 bg-[#070d1a]/80 p-2.5 rounded-2xl border border-white/5 text-center">
+                        <div>
+                            <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">এন্ট্রি ফি</span>
+                            <span class="text-xs font-black text-rose-400 font-mono">৳${item.fee}</span>
+                        </div>
+                        <div>
+                            <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">প্রাইজ পুল</span>
+                            <span class="text-xs font-black text-emerald-400 font-mono">৳${item.prize}</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between text-[10px] text-slate-400 px-1">
+                        <span class="flex items-center gap-1"><i class="fas fa-clock text-[9px]"></i> ${item.time || ''}</span>
+                        <span class="font-mono text-slate-500">ID: ${(item.id || '').slice(-6)}</span>
                     </div>
 
                     ${!isCompleted ? `
                         <div class="pt-2 border-t border-white/5 space-y-2">
                             ${currentRoomCode ? `
-                                <div class="flex items-center justify-between bg-black/40 p-2.5 rounded-xl border border-emerald-500/20">
+                                <div class="flex items-center justify-between bg-black/40 p-2.5 rounded-xl border border-emerald-500/30">
                                     <div class="flex items-center gap-2">
                                         <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs">
                                             <i class="fas fa-key"></i>
@@ -3947,7 +4078,7 @@
                             <span class="text-[9px] text-slate-500 font-medium">${dateStr}</span>
                         </div>
                     </div>
-<div class="text-right space-y-1">
+                    <div class="text-right space-y-1">
                         <span class="text-sm font-black text-rose-400 font-mono block">-৳${parseFloat(w.amount || 0).toFixed(2)}</span>
                         <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">${w.status || 'pending'}</span>
                     </div>
@@ -4193,9 +4324,9 @@
         function loadWithdrawPageUI() {
             const depositBal = activeUser.depositBalance || 0;
             const winningBal = activeUser.winningBalance || 0;
-            const withdrawFee = 10.00;
-            const minWithdraw = 100.00;
-            const maxWithdraw = 20000.00;
+            const withdrawFee = dynamicSettings.withdrawFee;
+            const minWithdraw = dynamicSettings.minWithdraw;
+            const maxWithdraw = dynamicSettings.maxWithdraw;
 
             const mainBalEl = document.getElementById('withdraw-main-wallet-bal');
             const winBalEl = document.getElementById('withdraw-winning-wallet-bal');
@@ -4221,7 +4352,7 @@
 
         function handleWithdrawAmountInput(inputEl) {
             inputEl.value = inputEl.value.replace(/[^0-9]/g, '');
-            const withdrawFee = 10.00;
+            const withdrawFee = dynamicSettings.withdrawFee;
             const winningBal = activeUser.winningBalance || 0;
             const maxAllowed = Math.max(0, Math.floor(winningBal - withdrawFee));
             
@@ -4414,9 +4545,9 @@
 
             const activeWallet = wallets.find(w => w.id === selectedWithdrawCardId) || wallets[0];
             const amountInput = document.getElementById('withdraw-amount-input');
-            const withdrawFee = 10.00;
-            const minWithdraw = 100.00;
-            const maxWithdraw = 20000.00;
+            const withdrawFee = dynamicSettings.withdrawFee;
+            const minWithdraw = dynamicSettings.minWithdraw;
+            const maxWithdraw = dynamicSettings.maxWithdraw;
             
             const rawVal = amountInput.value.trim();
             if (!rawVal || !/^\d+$/.test(rawVal)) {
@@ -4456,9 +4587,10 @@
                     requestedAt: Date.now()
                 });
 
+                const wNotice = getDynamicMsg('withdraw_request', 'উত্তোলন অনুরোধ গৃহীত', 'আপনার ৳{amount} ({method}) উত্তোলনের অনুরোধ সফল হয়েছে।', { amount: amount, method: activeWallet.method });
                 database.ref(`users/${activeUser.id}/notifications`).push({
-                    title: "উত্তোলন অনুরোধ গৃহীত",
-                    message: `আপনার ৳${amount} (${activeWallet.method}) উত্তোলনের অনুরোধ সফল হয়েছে।`,
+                    title: wNotice.title,
+                    message: wNotice.message,
                     time: "Just now",
                     timestamp: Date.now(),
                     isRead: false
@@ -4500,7 +4632,8 @@
 
         async function initiatePaymentGateway() {
             const amount = document.getElementById('deposit-amount-input').value.trim();
-            if (!amount || parseFloat(amount) < 10) return showToast('সর্বনিম্ন ডিপোজিট ১০ টাকা', 'error');
+            const minAllowed = dynamicSettings.minDeposit || 10;
+            if (!amount || parseFloat(amount) < minAllowed) return showToast(`সর্বনিম্ন ডিপোজিট ${minAllowed} টাকা`, 'error');
 
             const btn = document.getElementById('btnPayGateway');
             btn.disabled = true; 
@@ -4594,9 +4727,10 @@
                         activeUser.depositBalance += totalAdded;
                         syncBalancesToFirebase();
 
+                        const depNotice = getDynamicMsg('deposit_success', 'ডিপোজিট সফল', 'আপনার গেমিং ওয়ালেটে ৳{amount} যোগ করা হয়েছে।', { amount: totalAdded });
                         database.ref(`users/${uid}/notifications`).push({
-                            title: "ডিপোজিট সফল",
-                            message: `অভিনন্দন! আপনার গেমিং ডিপোজিট ওয়ালেটে ৳${totalAdded} যোগ করা হয়েছে। (TXID: ${txid})`,
+                            title: depNotice.title,
+                            message: depNotice.message,
                             time: "Just now",
                             timestamp: Date.now(),
                             isRead: false
@@ -4632,19 +4766,21 @@
         async function handleSendBalance() {
             const recipientId = document.getElementById('send-recipient-id').value.trim();
             const amount = parseFloat(document.getElementById('send-amount').value);
+            const minTrans = dynamicSettings.minTransfer || 10;
+            const feePercent = dynamicSettings.transferFeePercent || 2;
 
-            if (!recipientId || !amount || amount < 10) {
-                return showToast("সর্বনিম্ন ৳১০ পাঠাতে হবে এবং সঠিক Telegram ID দিন", "error");
+            if (!recipientId || !amount || amount < minTrans) {
+                return showToast(`সর্বনিম্ন ৳${minTrans} পাঠাতে হবে এবং সঠিক Telegram ID দিন`, "error");
             }
             if (recipientId === String(activeUser.id)) {
                 return showToast("নিজের অ্যাকাউন্টে ব্যালেন্স পাঠানো যাবে না", "error");
             }
 
-            const totalCost = amount * 1.02; // ২% সার্ভিস চার্জ
+            const totalCost = amount * (1 + (feePercent / 100)); // ডায়নামিক সার্ভিস চার্জ
             const currentTotal = activeUser.depositBalance + activeUser.winningBalance;
 
             if (currentTotal < totalCost) {
-                return showToast(`পর্যাপ্ত ব্যালেন্স নেই! ২% চার্জসহ প্রয়োজন ৳${totalCost.toFixed(2)}`, "error");
+                return showToast(`পর্যাপ্ত ব্যালেন্স নেই! ${feePercent}% চার্জসহ প্রয়োজন ৳${totalCost.toFixed(2)}`, "error");
             }
 
             const btn = document.getElementById('submit-send-btn');
@@ -4760,7 +4896,7 @@
 
         function shareReferralLinkTelegram() {
             const link = `https://t.me/ZOROTOURbot/open?startapp=ref_${activeUser.id}`;
-            const text = "🔥 ZORO TURN-এ জয়েন করুন এবং লুডো খেলে নগদ টাকা আয় করুন!";
+            const text = "🔥 ZORO TURN-এ জয়েন করুন এবং টুর্নামেন্ট খেলে নগদ টাকা আয় করুন!";
             const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`;
             if (window.Telegram?.WebApp?.openTelegramLink) {
                 window.Telegram.WebApp.openTelegramLink(shareUrl);
