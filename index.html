@@ -3689,7 +3689,11 @@
                                         <i class="fas fa-lock"></i> রুম কোড (অপেক্ষা)
                                     </button>
                                 </div>
-<i class="fas fa-spinner fa-spin text-amber-400"></i> এডমিন কোড দিচ্ছেন...
+                            ` : `
+                                ${!hasRoomCode ? `
+                                    <div class="bg-amber-500/10 border border-amber-500/20 p-2.5 rounded-xl text-center">
+                                        <div class="text-[11px] text-amber-300 font-bold flex items-center justify-center gap-1.5">
+                                            <i class="fas fa-spinner fa-spin text-amber-400"></i> এডমিন কোড দিচ্ছেন...
                                         </div>
                                     </div>
                                 ` : `
@@ -3851,7 +3855,7 @@
             }
         }
 
-        // ================= MULTI-TAB HISTORY =================
+// ================= MULTI-TAB HISTORY =================
         function switchHistoryTab(tab, btnEl) {
             currentHistoryTab = tab;
             document.querySelectorAll('.history-nav-tab').forEach(b => b.classList.remove('active'));
