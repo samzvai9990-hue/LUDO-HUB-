@@ -817,10 +817,13 @@
                     </div>
                     <h2 class="text-base font-black leading-tight text-white tracking-wide">JOIN OUR <span class="text-sky-400">COMMUNITY</span></h2>
                     <p class="text-[11px] text-slate-300 font-semibold">ম্যাচ রুম কোড ও দ্রুত আপডেট পেতে অফিসিয়াল গ্রুপে জয়েন করুন।</p>
-                    <div class="flex items-center gap-2 pt-1">
-                        <a href="https://t.me/ZOROTOUR" target="_blank" class="px-3.5 py-1.5 bg-[#2AABEE] hover:bg-[#229ed9] text-white rounded-xl text-xs font-black shadow-lg inline-flex items-center gap-1 active:scale-95 transition">
-                            <span>JOIN NOW</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                    <div class="flex items-center gap-2 pt-1 flex-wrap">
+                        <a href="https://t.me/ZOROTOUR" target="_blank" class="px-3 py-1.5 bg-[#2AABEE] hover:bg-[#229ed9] text-white rounded-xl text-xs font-black shadow-lg inline-flex items-center gap-1 active:scale-95 transition">
+                            <i class="fab fa-telegram-plane text-[11px]"></i> <span>JOIN NOW</span>
                         </a>
+                        <button onclick="openYoutubeTutorial()" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white rounded-xl text-xs font-black shadow-lg inline-flex items-center gap-1 active:scale-95 transition" title="টিউটোরিয়াল দেখুন">
+                            <i class="fab fa-youtube text-[11px]"></i> <span>টিউটোরিয়াল</span>
+                        </button>
                         <button onclick="navigateTo('support-center-page')" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-black border border-white/20 inline-flex items-center gap-1 active:scale-95 transition">
                             <i class="fas fa-headset text-cyan-400 text-xs"></i> <span>SUPPORT</span>
                         </button>
@@ -983,7 +986,7 @@
             <div id="tournament-matches-container" class="space-y-3 pt-1"></div>
         </div>
 
-        <!-- ======================= 3. DYNAMIC TASKS PAGE ======================= -->
+        <!-- ======================= 3. DYNAMIC UNIFIED TASKS PAGE ======================= -->
         <div id="task-page" class="sub-page space-y-4">
             <div class="bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 p-5 rounded-3xl text-white shadow-lg space-y-2 relative overflow-hidden">
                 <span class="px-2.5 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-black uppercase tracking-wider border border-white/30" id="task-badge-free">Free Coin Points</span>
@@ -995,39 +998,46 @@
                 </div>
             </div>
 
-            <!-- COIN CONVERT/EXCHANGE CARD -->
-            <div class="bg-[#121c35] p-4 rounded-3xl border border-yellow-500/30 shadow-lg space-y-3">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                        <span class="text-2xl">🪙</span>
+            <!-- PRO-LOOKING PROFESSIONAL COIN CONVERT/EXCHANGE CARD -->
+            <div class="relative overflow-hidden rounded-3xl p-5 border border-amber-400/30 bg-gradient-to-br from-[#121c35] via-[#0d162a] to-[#18233c] shadow-2xl space-y-4">
+                <div class="absolute -right-10 -bottom-10 w-36 h-36 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+                <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-400/20 border border-amber-400/40 flex items-center justify-center text-3xl shadow-inner">
+                            🪙
+                        </div>
                         <div>
-                            <span class="text-[10px] font-black text-slate-400 uppercase tracking-wider block" id="label-your-coins">আপনার কয়েন পয়েন্ট</span>
-                            <span id="task-page-points-val" class="text-xl font-black text-yellow-300 font-mono">0 🪙</span>
+                            <span class="text-[10px] font-black text-amber-300 uppercase tracking-widest block" id="label-your-coins">AVAILABLE COIN POINTS</span>
+                            <div class="flex items-baseline gap-1 mt-0.5">
+                                <span id="task-page-points-val" class="text-2xl font-black text-amber-300 font-mono tracking-tight">0</span>
+                                <span class="text-xs font-bold text-amber-400/80">🪙 Coins</span>
+                            </div>
                         </div>
                     </div>
                     <div class="text-right">
-                        <span class="text-[10px] font-bold text-slate-400 block" id="label-exchange-rate">এক্সচেঞ্জ রেট:</span>
-                        <span class="text-xs font-black text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md" id="exchange-rate-display-text">১০০ 🪙 = ৳৫ টাকা</span>
+                        <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block" id="label-exchange-rate">Exchange Rate</span>
+                        <span class="text-xs font-black text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-1 rounded-xl inline-block mt-0.5 font-mono" id="exchange-rate-display-text">১০০ 🪙 = ৳৫ টাকা</span>
                     </div>
                 </div>
 
-                <div id="exchange-lock-warning" class="hidden bg-rose-950/50 border border-rose-500/30 p-2.5 rounded-xl text-center">
+                <div id="exchange-lock-warning" class="hidden bg-rose-950/60 border border-rose-500/30 p-2.5 rounded-2xl text-center">
                     <p class="text-xs font-bold text-rose-300 flex items-center justify-center gap-1.5">
-                        <i class="fas fa-lock"></i> <span id="exchange-lock-warning-text">এডমিন কর্তৃক অথবা লিডারবোর্ড রিসেটের সময় নিকটবর্তী থাকায় কয়েন এক্সচেঞ্জ সাময়িক বন্ধ রয়েছে!</span>
+                        <i class="fas fa-lock text-rose-400"></i> <span id="exchange-lock-warning-text">এডমিন কর্তৃক অথবা লিডারবোর্ড রিসেটের সময় নিকটবর্তী থাকায় কয়েন এক্সচেঞ্জ সাময়িক বন্ধ রয়েছে!</span>
                     </p>
                 </div>
 
-                <div class="grid grid-cols-2 gap-2">
-                    <button onclick="handleExchangePoints()" id="btn-exchange-points" class="py-2.5 px-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 text-white rounded-xl text-xs font-black flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition">
-                        <i class="fas fa-repeat"></i>
-                        <span id="btn-exchange-label">১০০ 🪙 = ৳৫ এক্সচেঞ্জ</span>
+                <div class="grid grid-cols-2 gap-2.5">
+                    <button onclick="openCoinExchangeModal()" id="btn-exchange-points" class="py-3 px-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 hover:from-emerald-500 text-white rounded-2xl text-xs font-black flex items-center justify-center gap-2 shadow-lg active:scale-95 transition">
+                        <i class="fas fa-repeat text-amber-300"></i>
+                        <span id="btn-exchange-label">টাকা এক্সচেঞ্জ করুন</span>
                     </button>
-                    <button onclick="navigateTo('leaderboard-page')" class="py-2.5 px-3 bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 text-slate-950 rounded-xl text-xs font-black flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition">
+                    <button onclick="navigateTo('leaderboard-page')" class="py-3 px-3 bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-500 hover:from-amber-500 text-slate-950 rounded-2xl text-xs font-black flex items-center justify-center gap-2 shadow-lg active:scale-95 transition">
                         <i class="fas fa-trophy"></i>
                         <span id="btn-coin-leaderboard-txt">কয়েন লিডারবোর্ড</span>
                     </button>
                 </div>
-                <p class="text-[10px] text-slate-400 leading-tight" id="desc-exchange-note">* নোট: কয়েন এক্সচেঞ্জ করলে উক্ত পয়েন্ট আপনার লিডারবোর্ড র‍্যাংক থেকেও স্বয়ংক্রিয়ভাবে কমে যাবে।</p>
+                <p class="text-[10px] text-slate-400 leading-tight text-center" id="desc-exchange-note">* নিয়ম: এক্সচেঞ্জ করলে পয়েন্ট সমপরিমাণ লিডারবোর্ড থেকেও কর্তন হবে। শুধুমাত্র পূর্ণ টাকা যোগ হবে, অবশিষ্ট কয়েন জমা থাকবে।</p>
             </div>
 
             <!-- DAILY CHECKIN -->
@@ -1046,32 +1056,17 @@
                 </button>
             </div>
 
-            <!-- SECTION 1: REGULAR TASKS -->
+            <!-- UNIFIED TASKS SECTION HEADER (NO CATEGORY DIVISION) -->
             <div class="flex items-center justify-between px-1 pt-1">
                 <h4 class="text-xs font-black text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                    <i class="fas fa-bolt text-amber-400"></i> <span id="label-active-tasks">সাধারণ সক্রিয় টাস্কস</span>
+                    <i class="fas fa-tasks text-amber-400"></i> <span>সকল টাস্ক তালিকা (Tasks)</span>
                 </h4>
-                <span class="text-[10px] text-slate-400 font-bold bg-[#141e33] px-2 py-0.5 rounded-full border border-white/5">Instant Points</span>
+                <span class="text-[10px] text-slate-400 font-bold bg-[#141e33] px-2.5 py-0.5 rounded-full border border-white/5">Instant Points</span>
             </div>
 
-            <!-- Flex container that displays uncompleted tasks at top and completed at bottom -->
-            <div class="flex flex-col space-y-3.5" id="dynamic-tasks-container">
-                <div class="text-center py-6 text-xs text-slate-400" id="tasks-loading-txt">টাস্ক লোড হচ্ছে...</div>
-            </div>
-
-            <!-- SECTION 2: MISSIONS -->
-            <div class="pt-2 space-y-3">
-                <div class="flex items-center justify-between px-1 border-t border-white/10 pt-3">
-                    <h4 class="text-xs font-black text-amber-300 uppercase tracking-wider flex items-center gap-1.5">
-                        <i class="fas fa-bullseye text-rose-400"></i> <span id="label-missions-title">🎮 গেমপ্লে ও স্পেশাল মিশন (Missions)</span>
-                    </h4>
-                    <span class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">Firebase Live Missions</span>
-                </div>
-                <p class="text-[10.5px] text-slate-400 px-1" id="label-missions-desc">ম্যাচ খেলে, জয়ী হয়ে এবং রেফার করে নিচের মিশনগুলো সম্পন্ন করুন ও বড় রিওয়ার্ড আনলক করুন:</p>
-
-                <div class="flex flex-col space-y-3.5" id="dynamic-missions-container">
-                    <div class="text-center py-6 text-xs text-slate-400">মিশন লোড হচ্ছে...</div>
-                </div>
+            <!-- Single unified list container: Pending tasks at top, Completed tasks automatically at bottom -->
+            <div class="flex flex-col space-y-3" id="dynamic-tasks-container">
+                <div class="text-center py-8 text-xs text-slate-400" id="tasks-loading-txt">টাস্ক লোড হচ্ছে...</div>
             </div>
         </div>
 
@@ -1130,6 +1125,19 @@
                         </div>
                     </div>
                     <i class="fas fa-chevron-right text-blue-400 text-xs"></i>
+                </div>
+
+                <div onclick="openYoutubeTutorial()" class="support-card-link border-l-4 border-l-red-500">
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-12 h-12 rounded-2xl bg-red-500/20 text-red-400 flex items-center justify-center text-xl">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">অফিসিয়াল ইউটিউব টিউটোরিয়াল</h4>
+                            <p class="text-[11px] text-slate-400 mt-0.5">কীভাবে খেলবেন, ডিপোজিট ও উইথড্র করবেন ভিডিও দেখুন</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-red-400 text-xs"></i>
                 </div>
             </div>
         </div>
@@ -1687,6 +1695,64 @@
 
     <!-- ======================= MODALS / POPUPS ======================= -->
 
+    <!-- DEDICATED COIN EXCHANGE MODAL (TRANSFER PAGE LIKE LOOK & FEEL) -->
+    <div id="coin-exchange-modal" class="hidden fixed inset-0 z-[125] bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-[#10192e] border border-amber-400/40 rounded-3xl p-5 w-full max-w-sm space-y-4 shadow-2xl relative">
+            <div class="flex items-center justify-between pb-2 border-b border-white/10">
+                <div class="flex items-center gap-2.5">
+                    <span class="w-9 h-9 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg"><i class="fas fa-repeat"></i></span>
+                    <div>
+                        <h4 class="text-sm font-black text-white">কয়েন টু ক্যাশ এক্সচেঞ্জ</h4>
+                        <span class="text-[10px] text-amber-300 font-bold">Auto Convert to Deposit Balance</span>
+                    </div>
+                </div>
+                <button onclick="closeModal('coin-exchange-modal')" class="text-slate-400 hover:text-white p-1">
+                    <i class="fas fa-times text-sm"></i>
+                </button>
+            </div>
+
+            <p class="text-xs text-amber-300 bg-amber-950/40 p-2.5 rounded-xl font-semibold border border-amber-500/20 leading-relaxed">
+                আপনার বর্তমান সব কয়েন পয়েন্ট একবারে কনভার্ট হয়ে সরাসরি আপনার গেমিং ডিপোজিট ব্যালেন্সে যোগ হবে। কোনো পয়সা দেওয়া হবে না, অবশিষ্ট কয়েন জমা থাকবে।
+            </p>
+
+            <div class="space-y-3 bg-[#080d1a] p-4 rounded-2xl border border-white/5">
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-400 mb-1">মোট উপলব্ধ কয়েন (Disabled)</label>
+                    <div class="relative">
+                        <input id="exch-input-total-coins" type="text" readonly disabled class="w-full p-3 pl-10 rounded-xl bg-[#0e1628] border border-white/10 text-sm font-mono font-black text-amber-300 outline-none cursor-not-allowed select-none opacity-90">
+                        <span class="absolute left-3.5 top-3.5 text-amber-400 text-sm">🪙</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-400 mb-1">কনভার্ট হবে (কয়েন)</label>
+                        <input id="exch-input-usable-coins" type="text" readonly disabled class="w-full p-2.5 rounded-xl bg-[#0e1628] border border-white/10 text-xs font-mono font-bold text-white outline-none cursor-not-allowed select-none opacity-90">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-400 mb-1">অবশিষ্ট থাকবে (কয়েন)</label>
+                        <input id="exch-input-remaining-coins" type="text" readonly disabled class="w-full p-2.5 rounded-xl bg-[#0e1628] border border-white/10 text-xs font-mono font-bold text-slate-400 outline-none cursor-not-allowed select-none opacity-90">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold text-emerald-400 mb-1">আপনি পাবেন (পূর্ণ ক্যাশ BDT)</label>
+                    <div class="relative">
+                        <input id="exch-input-payout-cash" type="text" readonly disabled class="w-full p-3 pl-10 rounded-xl bg-[#06241a] border border-emerald-500/30 text-base font-mono font-black text-emerald-400 outline-none cursor-not-allowed select-none opacity-95">
+                        <span class="absolute left-3.5 top-3.5 text-emerald-400 font-bold text-sm">৳</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-2 pt-1">
+                <button onclick="closeModal('coin-exchange-modal')" class="w-1/3 py-3 bg-slate-800 font-bold rounded-xl text-xs text-slate-300 active:scale-95">বাতিল</button>
+                <button id="btn-confirm-exchange-submit" onclick="executeCoinExchangeFinal()" class="w-2/3 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 text-white font-black rounded-xl text-xs shadow-lg active:scale-95 transition flex items-center justify-center gap-1.5">
+                    <i class="fas fa-check-circle"></i> কনফার্ম এক্সচেঞ্জ
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- 1. LIVE CHAT MODAL -->
     <div id="support-modal-overlay">
         <div id="support-chat-wrapper">
@@ -1716,7 +1782,6 @@
                 </div>
 
                 <div class="header-actions">
-                    <!-- Admin moderation actions: Block & Mute buttons -->
                     <button id="btn-admin-mute" class="hidden px-2 py-1 bg-amber-600/30 text-amber-300 rounded-lg text-xs font-bold border border-amber-500/40" onclick="toggleAdminMuteUser()">
                         <i class="fas fa-volume-mute"></i> Mute
                     </button>
@@ -1787,9 +1852,7 @@
                 </button>
             </div>
 
-            <div class="max-h-48 overflow-y-auto space-y-2 pt-1" id="admin-links-container">
-                <!-- Loaded dynamic links -->
-            </div>
+            <div class="max-h-48 overflow-y-auto space-y-2 pt-1" id="admin-links-container"></div>
         </div>
     </div>
 
@@ -2016,6 +2079,7 @@
             minTransfer: 10,
             transferFeePercent: 2,
             exchangeLockedByAdmin: false,
+            youtubeTutorialUrl: "https://youtube.com/@zoroturn",
             messages: {
                 match_joined_title: "ম্যাচে সফল জয়েন!",
                 match_joined_msg: "আপনি সফলভাবে {matchNo} ম্যাচে জয়েন করেছেন।",
@@ -2070,8 +2134,8 @@
         let pendingJoinMatchId = null;
         let currentActiveFilter = 'all';
 
-        let remoteRegularTasks = [];
-        let remoteMissionTasks = [];
+        // Unified tasks list
+        let allUnifiedTasks = [];
 
         let pureMatchHistory = [];
         let userDepositHistory = [];
@@ -2092,7 +2156,7 @@
         let isExchangeLockedNow = false;
         let leaderboardCountdownTimer = null;
 
-        // PROFESSIONAL EXCHANGE RATE DEFAULT: 100 COINS = 5 BDT
+        // DYNAMIC COIN EXCHANGE RATE: DEFAULT 100 COINS = 5 BDT (20 Coins = 1 BDT)
         let pointsPerExchange = 100;
         let cashPerExchange = 5.00;
 
@@ -2147,10 +2211,7 @@
                 tabSpecial: "স্পেশাল",
                 tab1v1: "1v1 মোড",
                 tabMulti: "1v2/1v3",
-                missionsTitle: "🎮 গেমপ্লে ও স্পেশাল মিশন (Missions)",
-                missionsDesc: "ম্যাচ খেলে, জয়ী হয়ে এবং রেফার করে নিচের মিশনগুলো সম্পন্ন করুন ও বড় রিওয়ার্ড আনলক করুন:",
-                activeTasksTitle: "সাধারণ সক্রিয় টাস্কস",
-                btnExchange: "১০০ 🪙 = ৳৫ এক্সচেঞ্জ",
+                btnExchange: "টাকা এক্সচেঞ্জ করুন",
                 coinLeaderboard: "কয়েন লিডারবোর্ড",
                 dailyCheckin: "দৈনিক চেক-ইন বোনাস",
                 dailyCheckinSub: "প্রতিদিন ফ্রিতে কয়েন পয়েন্ট নিন",
@@ -2211,10 +2272,7 @@
                 tabSpecial: "Special",
                 tab1v1: "1v1 Mode",
                 tabMulti: "1v2/1v3",
-                missionsTitle: "🎮 Gameplay & Special Missions",
-                missionsDesc: "Complete gameplay, win and referral missions below to unlock massive coin points:",
-                activeTasksTitle: "Active Tasks",
-                btnExchange: "100 🪙 = 5 BDT Exchange",
+                btnExchange: "Exchange Money",
                 coinLeaderboard: "Coin Leaderboard",
                 dailyCheckin: "Daily Check-in Bonus",
                 dailyCheckinSub: "Claim free coin points every day",
@@ -2274,7 +2332,6 @@
             applyLanguageStrings();
             renderMatches();
             renderDynamicTasksList();
-            renderDynamicMissionsList();
         }
 
         function applyLanguageStrings() {
@@ -2310,9 +2367,6 @@
             document.getElementById('tab-1v1-txt').textContent = t.tab1v1;
             document.getElementById('tab-multi-txt').textContent = t.tabMulti;
 
-            document.getElementById('label-active-tasks').textContent = t.activeTasksTitle;
-            document.getElementById('label-missions-title').textContent = t.missionsTitle;
-            document.getElementById('label-missions-desc').textContent = t.missionsDesc;
             document.getElementById('btn-coin-leaderboard-txt').textContent = t.coinLeaderboard;
             document.getElementById('title-daily-checkin').textContent = t.dailyCheckin;
             document.getElementById('daily-checkin-subtitle').textContent = t.dailyCheckinSub;
@@ -2435,7 +2489,6 @@
             database.ref(`users/${activeUser.id}/completedTasks`).on('value', snap => {
                 activeUser.completedTasks = snap.val() || [];
                 renderDynamicTasksList();
-                renderDynamicMissionsList();
             });
 
             database.ref(`users/${activeUser.id}/lastDailyCheckin`).on('value', snap => {
@@ -2447,7 +2500,7 @@
                 activeUser.hasFirstDepositBonusGiven = snap.val() === true;
             });
 
-            // GLOBAL SETTINGS INCLUDING FIREBASE DIRECT EXCHANGE LOCK
+            // GLOBAL SETTINGS
             database.ref('settings').on('value', snap => {
                 if (snap.exists()) {
                     const st = snap.val();
@@ -2460,6 +2513,7 @@
                     if (st.imgbb_api_key) dynamicImgbbApiKey = String(st.imgbb_api_key).trim();
                     if (st.main_notice) document.getElementById('main-notice-marquee').textContent = st.main_notice;
                     if (st.tg_bot_token) TG_BOT_TOKEN = st.tg_bot_token;
+                    if (st.tutorial_youtube_url) dynamicSettings.youtubeTutorialUrl = st.tutorial_youtube_url;
                     if (st.messages) dynamicSettings.messages = { ...dynamicSettings.messages, ...st.messages };
                     if (st.exchange_locked !== undefined) {
                         dynamicSettings.exchangeLockedByAdmin = (st.exchange_locked === true || st.exchange_locked === "true");
@@ -2475,6 +2529,7 @@
                 }
             });
 
+            // FIREBASE DYNAMIC COIN PRICE CONFIGURATION
             database.ref('settings/points_exchange_rate').on('value', snap => {
                 if (snap.exists()) {
                     const r = snap.val();
@@ -2485,9 +2540,7 @@
                     cashPerExchange = 5.00;
                 }
                 const rateDisplay = document.getElementById('exchange-rate-display-text');
-                const btnLabel = document.getElementById('btn-exchange-label');
                 if (rateDisplay) rateDisplay.textContent = `${pointsPerExchange} 🪙 = ৳${cashPerExchange} টাকা`;
-                if (btnLabel) btnLabel.textContent = `${pointsPerExchange} 🪙 = ৳${cashPerExchange} এক্সচেঞ্জ`;
             });
 
             gameSupportDb.ref('support_chats/' + supportTgUser.id).on('value', snap => {
@@ -2559,7 +2612,7 @@
 
             listenNotificationBadge();
             listenRealtimeMatches();
-            listenDynamicTasksAndMissions();
+            listenUnifiedTasks();
             listenAllHistories();
             listenPendingMatchReviews();
             initLeaderboardEngine();
@@ -2583,6 +2636,11 @@
                 }
             }, 500);
         };
+
+        function openYoutubeTutorial() {
+            const url = dynamicSettings.youtubeTutorialUrl || "https://youtube.com/@zoroturn";
+            openExternalUrl(url);
+        }
 
         function triggerMatchListSpinRefresh(btnEl) {
             const icon = btnEl ? btnEl.querySelector('i') : document.getElementById('match-page-spin-icon');
@@ -2734,7 +2792,7 @@
             document.getElementById('card-winning-bal').textContent = `৳ ${activeUser.winningBalance.toFixed(2)}`;
 
             const taskPoints = document.getElementById('task-page-points-val');
-            if (taskPoints) taskPoints.textContent = `${activeUser.coinPoints} 🪙`;
+            if (taskPoints) taskPoints.textContent = `${activeUser.coinPoints}`;
 
             const depPageBal = document.getElementById('deposit-page-balance');
             if (depPageBal) depPageBal.textContent = `${activeUser.depositBalance.toFixed(2)}`;
@@ -2913,53 +2971,60 @@
             `).join('');
         }
 
-        // --- 3. DYNAMIC TASKS AND MISSIONS ---
-        function listenDynamicTasksAndMissions() {
+        // --- 3. UNIFIED TASKS ENGINE (NO DIVISION, COMPLETED PUSHED TO BOTTOM) ---
+        function listenUnifiedTasks() {
             gameSupportDb.ref('tasks').on('value', snap => {
-                remoteRegularTasks = [];
-                remoteMissionTasks = [];
-
-                if (snap.exists()) {
-                    snap.forEach(c => {
-                        const item = { id: c.key, ...c.val() };
-                        const isMission = item.category === 'mission' || item.isMission === true || (item.type && item.type.startsWith('gameplay_')) || item.type === 'mission';
-                        if (isMission) {
-                            remoteMissionTasks.push(item);
-                        } else {
-                            remoteRegularTasks.push(item);
-                        }
-                    });
-                }
-                renderDynamicTasksList();
-                renderDynamicMissionsList();
+                rebuildUnifiedTaskList();
             });
 
             gameSupportDb.ref('missions').on('value', snap => {
-                if (snap.exists()) {
-                    snap.forEach(c => {
-                        const mItem = { id: c.key, isMission: true, ...c.val() };
-                        if (!remoteMissionTasks.some(x => x.id === mItem.id)) {
-                            remoteMissionTasks.push(mItem);
+                rebuildUnifiedTaskList();
+            });
+        }
+
+        async function rebuildUnifiedTaskList() {
+            try {
+                const [tasksSnap, missionsSnap] = await Promise.all([
+                    gameSupportDb.ref('tasks').once('value'),
+                    gameSupportDb.ref('missions').once('value')
+                ]);
+
+                allUnifiedTasks = [];
+
+                if (tasksSnap.exists()) {
+                    tasksSnap.forEach(c => {
+                        allUnifiedTasks.push({ id: c.key, ...c.val() });
+                    });
+                }
+
+                if (missionsSnap.exists()) {
+                    missionsSnap.forEach(c => {
+                        const mVal = { id: c.key, ...c.val() };
+                        if (!allUnifiedTasks.some(x => x.id === mVal.id)) {
+                            allUnifiedTasks.push(mVal);
                         }
                     });
-                    renderDynamicMissionsList();
                 }
-            });
+
+                renderDynamicTasksList();
+            } catch(e) {
+                console.error("Task sync error:", e);
+            }
         }
 
         function renderDynamicTasksList() {
             const container = document.getElementById('dynamic-tasks-container');
             if (!container) return;
 
-            if (!remoteRegularTasks.length) {
-                container.innerHTML = `<div class="text-center py-5 text-xs text-slate-500">বর্তমানে কোনো সক্রিয় সাধারণ টাস্ক নেই।</div>`;
+            if (!allUnifiedTasks.length) {
+                container.innerHTML = `<div class="text-center py-8 text-xs text-slate-500">বর্তমানে কোনো টাস্ক সক্রিয় নেই।</div>`;
                 return;
             }
 
             const completed = activeUser.completedTasks || [];
             
             // Sort: Incomplete tasks first, Completed tasks at the very bottom
-            const sortedTasks = [...remoteRegularTasks].sort((a, b) => {
+            const sortedTasks = [...allUnifiedTasks].sort((a, b) => {
                 const aDone = completed.includes(a.id);
                 const bDone = completed.includes(b.id);
                 if (aDone && !bDone) return 1;
@@ -2970,29 +3035,6 @@
             container.innerHTML = sortedTasks.map(task => renderSingleTaskCard(task, completed)).join('');
         }
 
-        function renderDynamicMissionsList() {
-            const container = document.getElementById('dynamic-missions-container');
-            if (!container) return;
-
-            if (!remoteMissionTasks.length) {
-                container.innerHTML = `<div class="text-center py-5 text-xs text-slate-500">বর্তমানে কোনো গেমপ্লে মিশন সক্রিয় নেই। ফায়ারবেস থেকে নতুন মিশন যোগ করুন।</div>`;
-                return;
-            }
-
-            const completed = activeUser.completedTasks || [];
-            
-            // Sort: Incomplete missions first, Completed missions at the bottom
-            const sortedMissions = [...remoteMissionTasks].sort((a, b) => {
-                const aDone = completed.includes(a.id);
-                const bDone = completed.includes(b.id);
-                if (aDone && !bDone) return 1;
-                if (!aDone && bDone) return -1;
-                return 0;
-            });
-
-            container.innerHTML = sortedMissions.map(task => renderSingleTaskCard(task, completed)).join('');
-        }
-
         function renderSingleTaskCard(task, completed) {
             const isDone = completed.includes(task.id);
             const pts = parseInt(task.rewardPoints || 30, 10);
@@ -3000,8 +3042,8 @@
             const matchesWonTotal = pureMatchHistory.filter(m => m.status === 'WIN').length;
             const referEarn = parseFloat(document.getElementById('ref-stat-earn')?.textContent?.replace('৳', '') || 0);
 
-            let icon = "fas fa-gamepad";
-            let tag = "Custom Task";
+            let icon = "fas fa-tasks";
+            let tag = "Task";
             let color = "bg-amber-500/20 text-amber-400";
 
             let isGameplayReadyToClaim = false;
@@ -3034,6 +3076,10 @@
                 icon = "fas fa-robot";
                 tag = "Telegram Bot";
                 color = "bg-indigo-500/20 text-indigo-400";
+            } else if (task.type === 'youtube_sub' || task.type === 'youtube_watch') {
+                icon = "fab fa-youtube";
+                tag = "YouTube";
+                color = "bg-red-500/20 text-red-400";
             }
 
             return `
@@ -3102,7 +3148,7 @@
                     ` : `
                         <button onclick="startTimedTaskFlow('${task.id}', '${task.targetUrl}', ${task.timerSeconds || 5}, ${pts})" class="w-full py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-md transition active:scale-98">
                             <i class="fas fa-external-link-alt"></i>
-                            <span>ওয়েবসাইট ভিজিট করুন (${task.timerSeconds || 5}s)</span>
+                            <span>ভিজিট ও কাজ সম্পন্ন করুন (${task.timerSeconds || 5}s)</span>
                         </button>
                     `}
                 </div>
@@ -3275,13 +3321,19 @@
 
             syncBalancesToFirebase();
             renderDynamicTasksList();
-            renderDynamicMissionsList();
             loadLeaderboard();
             showToast(`🎉 অভিনন্দন! +${points} 🪙 কয়েন অ্যাকাউন্টে যোগ হয়েছে!`, "success");
         }
 
-        // COIN EXCHANGE (100 COINS = 5 BDT)
-        function handleExchangePoints() {
+        // ================= COIN EXCHANGE MODAL & STRICT INTEGER MONEY CALCULATIONS =================
+        let preparedCoinExchange = {
+            totalCoins: 0,
+            usableCoins: 0,
+            remainingCoins: 0,
+            cashPayout: 0
+        };
+
+        function openCoinExchangeModal() {
             if (dynamicSettings.exchangeLockedByAdmin) {
                 return showToast("⚠️ এডমিন কর্তৃক কয়েন এক্সচেঞ্জ সাময়িক বন্ধ রাখা হয়েছে!", "error");
             }
@@ -3289,27 +3341,71 @@
                 return showToast("⚠️ লিডারবোর্ড রিসেটের সময় নিকটবর্তী হওয়ায় কয়েন এক্সচেঞ্জ সাময়িক বন্ধ রয়েছে!", "error");
             }
 
-            if ((activeUser.coinPoints || 0) < pointsPerExchange) {
-                return showToast(`আপনার পর্যাপ্ত কয়েন নেই! এক্সচেঞ্জ করতে ন্যূনতম ${pointsPerExchange} 🪙 কয়েন প্রয়োজন।`, "error");
+            const totalCoins = parseInt(activeUser.coinPoints, 10) || 0;
+            const singleCashUnitCost = pointsPerExchange / cashPerExchange; // coins per 1 BDT (e.g. 100 / 5 = 20)
+
+            const totalPayableCashInteger = Math.floor(totalCoins / singleCashUnitCost); // Minimum 1 BDT integer
+            
+            if (totalPayableCashInteger < 1) {
+                return showToast(`আপনার পর্যাপ্ত কয়েন নেই! অন্তত ১ টাকা এক্সচেঞ্জ করতে ন্যূনতম ${Math.ceil(singleCashUnitCost)} 🪙 কয়েন প্রয়োজন।`, "error");
             }
 
-            if (confirm(`আপনি কি ${pointsPerExchange} 🪙 পয়েন্ট এক্সচেঞ্জ করে গেমিং ডিপোজিট ওয়ালেটে ৳${cashPerExchange} টাকা নিতে চান? এতে লিডারবোর্ড র‍্যাংক কমে যাবে।`)) {
-                activeUser.coinPoints -= pointsPerExchange;
-                activeUser.depositBalance += cashPerExchange;
+            const usableCoins = totalPayableCashInteger * singleCashUnitCost;
+            const remainingCoins = totalCoins - usableCoins; // Points left unchanged, no partial/fractional coin exchange!
 
-                // Sync to user DB and Leaderboard will auto deduct
+            preparedCoinExchange = {
+                totalCoins: totalCoins,
+                usableCoins: usableCoins,
+                remainingCoins: remainingCoins,
+                cashPayout: totalPayableCashInteger
+            };
+
+            document.getElementById('exch-input-total-coins').value = `${totalCoins} 🪙`;
+            document.getElementById('exch-input-usable-coins').value = `${usableCoins} 🪙`;
+            document.getElementById('exch-input-remaining-coins').value = `${remainingCoins} 🪙`;
+            document.getElementById('exch-input-payout-cash').value = `${totalPayableCashInteger}.00 BDT`;
+
+            document.getElementById('coin-exchange-modal').classList.remove('hidden');
+        }
+
+        async function executeCoinExchangeFinal() {
+            if (dynamicSettings.exchangeLockedByAdmin || isExchangeLockedNow) {
+                closeModal('coin-exchange-modal');
+                return showToast("⚠️ এক্সচেঞ্জ সাময়িকভাবে বন্ধ আছে!", "error");
+            }
+
+            const { usableCoins, cashPayout, remainingCoins } = preparedCoinExchange;
+
+            if (cashPayout < 1 || (activeUser.coinPoints || 0) < usableCoins) {
+                return showToast("কয়েন অপর্যাপ্ত!", "error");
+            }
+
+            const btn = document.getElementById('btn-confirm-exchange-submit');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> এক্সচেঞ্জ হচ্ছে...`;
+
+            try {
+                activeUser.coinPoints = remainingCoins;
+                activeUser.depositBalance += cashPayout;
+
                 syncBalancesToFirebase();
                 loadLeaderboard();
 
-                database.ref(`users/${activeUser.id}/notifications`).push({
+                await database.ref(`users/${activeUser.id}/notifications`).push({
                     title: "🪙 কয়েন এক্সচেঞ্জ সফল!",
-                    message: `${pointsPerExchange} 🪙 পয়েন্ট এক্সচেঞ্জ করায় ৳${cashPerExchange} আপনার গেমিং ডিপোজিট ব্যালেন্সে যোগ হয়েছে।`,
+                    message: `${usableCoins} 🪙 কয়েন এক্সচেঞ্জ করায় ৳${cashPayout} আপনার গেমিং ডিপোজিট ব্যালেন্সে যোগ হয়েছে।`,
                     time: "Just now",
                     timestamp: Date.now(),
                     isRead: false
                 });
 
-                showToast(`🎉 ${pointsPerExchange} 🪙 সফলভাবে এক্সচেঞ্জ হয়ে ৳${cashPerExchange} টাকা গেমিং ব্যালেন্সে যুক্ত হয়েছে!`, "success");
+                closeModal('coin-exchange-modal');
+                showToast(`🎉 সফলভাবে ${usableCoins} 🪙 এক্সচেঞ্জ করে ৳${cashPayout} টাকা গেমিং ব্যালেন্সে যোগ হয়েছে!`, "success");
+            } catch(e) {
+                showToast("এক্সচেঞ্জ ব্যর্থ হয়েছে!", "error");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fas fa-check-circle"></i> কনফার্ম এক্সচেঞ্জ`;
             }
         }
 
@@ -3524,7 +3620,7 @@
         }
 
         function handleHeaderClick() {
-            // Reserved
+            // Reserved for future profile expansions
         }
 
         function listenCommunityLinks() {
@@ -3584,7 +3680,7 @@
         // ADMIN BLOCK & MUTE USER
         async function toggleAdminBlockUser() {
             if (!activeChatTargetUserId) return;
-            const isCurrentlyBlocked = activeTargetUserMeta.isBanned === true;
+            const isCurrentlyBlocked = activeTargetUserMeta?.isBanned === true;
             await gameSupportDb.ref(`users_meta/${activeChatTargetUserId}`).update({
                 isBanned: !isCurrentlyBlocked
             });
@@ -3593,7 +3689,7 @@
 
         async function toggleAdminMuteUser() {
             if (!activeChatTargetUserId) return;
-            const isCurrentlyMuted = activeTargetUserMeta.isMuted === true;
+            const isCurrentlyMuted = activeTargetUserMeta?.isMuted === true;
             await gameSupportDb.ref(`users_meta/${activeChatTargetUserId}`).update({
                 isMuted: !isCurrentlyMuted
             });
@@ -3940,7 +4036,6 @@
             currentUserMetaRef.on('value', snap => {
                 activeTargetUserMeta = snap.val() || {};
                 
-                // Admin button label updates
                 const muteBtn = document.getElementById('btn-admin-mute');
                 const blockBtn = document.getElementById('btn-admin-block');
                 if (muteBtn) {
@@ -3960,14 +4055,14 @@
             const banner = document.getElementById('user-status-banner');
             const inputBar = document.getElementById('support-input-bar');
 
-            if (activeTargetUserMeta.isBanned) {
+            if (activeTargetUserMeta?.isBanned) {
                 banner.style.display = 'block';
                 banner.innerText = '⚠️ আপনার অ্যাকাউন্টটি স্থায়ীভাবে ব্লক করা হয়েছে।';
                 inputBar.style.display = 'none';
                 return;
             }
 
-            if (activeTargetUserMeta.isMuted) {
+            if (activeTargetUserMeta?.isMuted) {
                 banner.style.display = 'block';
                 banner.innerText = '🔇 আপনি বর্তমানে মিউট অবস্থায় আছেন। বার্তা পাঠাতে পারবেন না।';
                 inputBar.style.display = 'none';
@@ -4265,7 +4360,7 @@
                                         </div>
                                     </div>
                                 ` : `
-<div class="grid grid-cols-2 gap-2 pt-1">
+                                    <div class="grid grid-cols-2 gap-2 pt-1">
                                         <button onclick="copyMatchRoomCode('${m.roomCode}')" class="py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs shadow-md flex items-center justify-center gap-1.5 transition active:scale-95">
                                             <i class="fas fa-copy"></i> কোড: ${m.roomCode}
                                         </button>
@@ -4403,7 +4498,7 @@
                 const pSnap = await gameSupportDb.ref(`matches/${mId}/players`).once('value');
                 const currentPlayers = pSnap.val() ? Object.values(pSnap.val()) : [playerPayload];
 
-                await database.ref(`users/${activeUser.id}/history/${mId}`).set({
+                const matchHistoryItem = {
                     type: "MATCH",
                     matchNo: m.matchNo,
                     matchId: mId,
@@ -4416,7 +4511,14 @@
                     playersSnapshot: currentPlayers,
                     time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                     timestamp: Date.now()
-                });
+                };
+
+                // Instant local history addition to guarantee UI update
+                pureMatchHistory.unshift({ id: mId, ...matchHistoryItem });
+                if (currentHistoryTab === 'matches') renderPureMatchHistory();
+
+                // Firebase Persistence
+                await database.ref(`users/${activeUser.id}/history/${mId}`).set(matchHistoryItem);
 
                 const joinNotice = getDynamicMsg('match_joined', 'ম্যাচে সফল জয়েন!', 'আপনি সফলভাবে {matchNo} ম্যাচে জয়েন করেছেন।', { matchNo: m.matchNo });
                 await database.ref(`users/${activeUser.id}/notifications`).push({
@@ -4501,7 +4603,6 @@
                 }
                 if (currentHistoryTab === 'matches') renderPureMatchHistory();
                 renderDynamicTasksList();
-                renderDynamicMissionsList();
             });
 
             database.ref(`users/${activeUser.id}/deposits`).on('value', snap => {
@@ -4521,7 +4622,6 @@
             });
         }
 
-        // RENDER MATCH HISTORY WITH ACCURATE OPPONENT AVATARS AND DETAILS
         function renderPureMatchHistory() {
             const container = document.getElementById('history-container-matches');
             if (!container) return;
@@ -4541,7 +4641,6 @@
                 const isCompleted = item.status === 'WIN' || item.status === 'LOSS' || item.status === 'REFUNDED' || liveMatch?.status === 'COMPLETED';
                 const hasPendingSubmission = item.status === 'PENDING_REVIEW';
 
-                // OPPONENT DATA RETRIEVAL (LIVE PLAYERS OR SNAPSHOT)
                 let allPlayers = [];
                 if (liveMatch && liveMatch.playersList && liveMatch.playersList.length > 0) {
                     allPlayers = liveMatch.playersList;
@@ -4893,7 +4992,6 @@
 
                 leaders.sort((a, b) => b.coinPoints - a.coinPoints);
 
-                // UPDATE MY CURRENT POSITION CARD
                 const myIndex = leaders.findIndex(l => String(l.uid) === String(activeUser.id));
                 const myRankNumEl = document.getElementById('my-lb-rank-num');
                 const myLbAvatar = document.getElementById('my-lb-avatar');
@@ -5564,7 +5662,6 @@
 
             if (pageId === 'task-page') {
                 renderDynamicTasksList();
-                renderDynamicMissionsList();
             }
             if (pageId === 'history-page') switchHistoryTab('matches', document.getElementById('tab-btn-matches'));
             if (pageId === 'wallet-page') switchWalletTab('deposit', document.getElementById('tab-btn-wallet-dep'));
